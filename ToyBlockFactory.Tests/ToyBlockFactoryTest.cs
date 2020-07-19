@@ -1,6 +1,4 @@
-using System;
 using KataToyBlockFactory;
-//using KataToyBlockFactory;
 using Xunit;
 
 namespace ToyBlockFactory.Tests
@@ -10,7 +8,7 @@ namespace ToyBlockFactory.Tests
         [Fact]
         public void GetNumberOfBlocksToBePainted()
         {
-            //var order = new Order("James", "123 Smith Street, Fitzroy");
+           // var order = new Order("James", "123 Smith Street, Fitzroy");
             // var paintingReport = new PaintingReport();
             // var cuttingReport = new CuttingReport();
             // var priceCalculator = new PriceCalculator();
@@ -18,6 +16,13 @@ namespace ToyBlockFactory.Tests
             //
             // Assert.Equal(1, toyBlockFactory.GetNumberOfBlocksToBePainted());
             
+        }
+
+        [Fact]
+        public void GetTotalOrders()
+        {
+            // var toyBlockFactory = new KataToyBlockFactory.ToyBlockFactory();
+            // Assert.Equal(1, toyBlockFactory.GetTotalOrders());
         }
     }
 }

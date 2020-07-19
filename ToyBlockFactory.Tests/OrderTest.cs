@@ -22,7 +22,6 @@ namespace ToyBlockFactory.Tests
         [Fact]
         public void OrdersHaveAllNecessaryFields()
         {
-            //var blocks = new Block();
             var order = new Order("James", "123 Smith Street, Fitzroy", "20 October 2020", 1);
 
             Assert.Equal(OrderStatus.New, order.OrderStatus);
@@ -30,6 +29,7 @@ namespace ToyBlockFactory.Tests
             Assert.Equal("123 Smith Street, Fitzroy", order.Address);
             Assert.Equal("20 October 2020", order.Date);
             Assert.Equal(1, order.OrderNumber);
+            Assert.Equal(1, order.GetBlockQuantity());
         }
     }
 }
