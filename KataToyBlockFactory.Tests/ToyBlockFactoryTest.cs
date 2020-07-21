@@ -1,7 +1,7 @@
 using KataToyBlockFactory;
 using Xunit;
 
-namespace ToyBlockFactory.Tests
+namespace KataToyBlockFactory.Tests
 {
     public class ToyBlockFactoryTest
     {

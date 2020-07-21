@@ -11,58 +11,64 @@ namespace KataToyBlockFactory
         public string Address { get; private set; }
 
         public DateTime Date { get; }
-        public int OrderNumber { get; private set; }
-        
-        public readonly List<Block> Blocks = new List<Block>();
-        
-        //List<Block> blocks
-        // public Order(string name, string address, string date, int orderNumber, string blockNumber)
-        // {
-        //     Name = name;
-        //     Address = address;
-        //     Date = AskDate(date);
-        //     OrderNumber = orderNumber;
-        //     Blocks = GetBlueSquareOrder(blockNumber);
-        // }
+        public int OrderNumber { get; set; }
 
-        public Order(string name, string address, string date, string blockNumber)
+        private readonly List<Block> Squares = new List<Block>();
+        
+        public Order(string name, string address, string date, string redSquare, string blueSquare, string yellowSquare, OrderStatus 
+        orderStatus = 
+        OrderStatus.New)
         {
             Name = name;
             Address = address;
             Date = AskDate(date);
-            OrderNumber = GetOrderNumber();
-            Blocks = GetBlueSquareOrder(blockNumber);
+            OrderStatus = orderStatus;
+            OrderNumber = 0;
+            Squares = GetSquareOrder(redSquare, blueSquare, yellowSquare);
         }
-
-
-        private DateTime AskDate(string question)
+        
+        private static DateTime AskDate(string question)
         {
             var dateTime = Convert.ToDateTime(question);
             return dateTime;
         }
 
-        private int GetOrderNumber()
-        { 
-            var count = 0;
-            count++;
-            return count;
-        }
+        // private int GetOrderNumber()
+        // { 
+        //     var count = 0;
+        //     count++;
+        //     return count;
+        // }
 
-        private List<Block> GetBlueSquareOrder(string blueSquare)
+        private List<Block> GetSquareOrder(string redSquare, string blueSquare, string yellowSquare)
         {
+            var numberOfRedSquares = int.Parse(redSquare);
             var numberOfBlueSquares = int.Parse(blueSquare);
+            var numberOfYellowSquares = int.Parse(yellowSquare);
+            for (var i = 1; i <= numberOfRedSquares; i++)
+            {
+                var block = new Block(Shape.Square, Color.Red);
+                Squares.Add(block);
+            }
+            
             for (var i = 1; i <= numberOfBlueSquares; i++)
             {
                 var block = new Block(Shape.Square, Color.Blue);
-                Blocks.Add(block);
+                Squares.Add(block);
             }
-
-            return Blocks;
+            
+            for (var i = 1; i <= numberOfYellowSquares; i++)
+            {
+                var block = new Block(Shape.Square, Color.Yellow);
+                Squares.Add(block);
+            }
+            
+            return Squares;
         }
 
-        public int TotalBlocks()
+        public int TotalBlocksOrder()
         {
-            return Blocks.Count;
+            return Squares.Count;
         }
         
         // public Order(string name, string address, string date, int orderNumber, OrderStatus orderStatus = 

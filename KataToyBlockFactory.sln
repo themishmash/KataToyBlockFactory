@@ -2,7 +2,7 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KataToyBlockFactory", "KataToyBlockFactory\KataToyBlockFactory.csproj", "{64BB3A25-44E1-41CC-BFF6-9532417ED831}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToyBlockFactory.Tests", "ToyBlockFactory.Tests\ToyBlockFactory.Tests.csproj", "{20A4D800-CBC4-452D-B202-8717F9F48B7A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KataToyBlockFactory.Tests", "KataToyBlockFactory.Tests\KataToyBlockFactory.Tests.csproj", "{20A4D800-CBC4-452D-B202-8717F9F48B7A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using KataToyBlockFactory;
 
-namespace ToyBlockFactory.Tests
+namespace KataToyBlockFactory.Tests
 {
     public class TestCashier : IInputOutput
     {
