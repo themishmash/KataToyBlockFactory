@@ -58,7 +58,7 @@ namespace KataToyBlockFactory.Tests
         public void CanCreateOrder()
         {
             var toyBlockFactory = new ToyBlockFactory();
-            var order = toyBlockFactory.CreateOrder("James", "123 Smith Street, Fitzroy", "10/10/20", "5", "2", "1" );
+            var order = toyBlockFactory.CreateOrder("James", "123 Smith Street, Fitzroy", "10/10/20", 5, 2, 1);
             var expectedDate = order.Date;
             
             Assert.Equal(OrderStatus.New, order.OrderStatus);
@@ -74,8 +74,8 @@ namespace KataToyBlockFactory.Tests
         public void CanCreateOrderWithIncreasingOrderNumber()
         {
             var toyBlockFactory = new ToyBlockFactory();
-            var order = toyBlockFactory.CreateOrder("James", "123 Smith Street, Fitzroy", "10/10/20", "5", "2", "1" );
-            var order2 = toyBlockFactory.CreateOrder("Joe", "123 Coding Road", "10/10/20", "4", "2", "3");
+            var order = toyBlockFactory.CreateOrder("James", "123 Smith Street, Fitzroy", "10/10/20", 5, 2, 1 );
+            var order2 = toyBlockFactory.CreateOrder("Joe", "123 Coding Road", "10/10/20", 4, 2, 3);
             
             Assert.Equal(1, order.OrderNumber);
             Assert.Equal(2, order2.OrderNumber);
@@ -86,10 +86,19 @@ namespace KataToyBlockFactory.Tests
         public void CanCreatePaintingReport()
         {
             var toyBlockFactory = new ToyBlockFactory();
-            var order = toyBlockFactory.CreateOrder("James", "123 Smith Street, Fitzroy", "10/10/20", "5", "2", "1");
+            var order = toyBlockFactory.CreateOrder("James", "123 Smith Street, Fitzroy", "10/10/20", 5, 2, 1);
+            var order2 = toyBlockFactory.CreateOrder("James", "123 Smith Street, Fitzroy", "10/10/20", 5, 2, 1);
           //  var painting = toyBlockFactory.CreatePaintingReport(order);
             
-           // Assert.Equal(5, painting.GetRedSquaresToBePainted());
+           Assert.Equal(10, toyBlockFactory.GetRedSquaresToBePainted());
+           Assert.Equal(4, toyBlockFactory.GetBlueSquaresToBePainted());
+           Assert.Equal(2, toyBlockFactory.GetYellowSquaresToBePainted());
+           
+           //todo create method in toyblock factory to add blocks to be painted? eg find all that are square red, square blue, square yellow etc. 
+           
+           //todo find redsquares in order class
+           //add to 
+           
 
         }
     }

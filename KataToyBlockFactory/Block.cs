@@ -7,7 +7,8 @@ namespace KataToyBlockFactory
         
         public Block(Shape shape, Color color)
         {
-            
+            Shape = shape;
+            Color = color;
         }
     }
 }

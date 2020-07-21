@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
+
 namespace KataToyBlockFactory
 {
     public class Order
@@ -9,13 +11,17 @@ namespace KataToyBlockFactory
         public string Name { get; }
         public OrderStatus OrderStatus { get; private set; }
         public string Address { get; private set; }
-
         public DateTime Date { get; }
         public int OrderNumber { get; set; }
 
-        private readonly List<Block> Squares = new List<Block>();
+        public string RedSquare;
+        public string BlueSquare;
+        public string YellowSquare;
+
+        public readonly List<Block> Squares = new List<Block>();
         
-        public Order(string name, string address, string date, string redSquare, string blueSquare, string yellowSquare, OrderStatus 
+        public Order(string name, string address, string date, int redSquare, int blueSquare, int yellowSquare, 
+        OrderStatus 
         orderStatus = 
         OrderStatus.New)
         {
@@ -24,6 +30,9 @@ namespace KataToyBlockFactory
             Date = AskDate(date);
             OrderStatus = orderStatus;
             OrderNumber = 0;
+            // RedSquare = redSquare;
+            // BlueSquare = blueSquare;
+            // YellowSquare = yellowSquare;
             Squares = GetSquareOrder(redSquare, blueSquare, yellowSquare);
         }
         
@@ -40,24 +49,24 @@ namespace KataToyBlockFactory
         //     return count;
         // }
 
-        private List<Block> GetSquareOrder(string redSquare, string blueSquare, string yellowSquare)
+        private List<Block> GetSquareOrder(int redSquare, int blueSquare, int yellowSquare)
         {
-            var numberOfRedSquares = int.Parse(redSquare);
-            var numberOfBlueSquares = int.Parse(blueSquare);
-            var numberOfYellowSquares = int.Parse(yellowSquare);
-            for (var i = 1; i <= numberOfRedSquares; i++)
+           // var redSquare = int.Parse(redSquare);
+            //var blueSquare = int.Parse(blueSquare);
+            //var numberOfYellowSquares = int.Parse(yellowSquare);
+            for (var i = 1; i <= redSquare; i++)
             {
                 var block = new Block(Shape.Square, Color.Red);
                 Squares.Add(block);
             }
             
-            for (var i = 1; i <= numberOfBlueSquares; i++)
+            for (var i = 1; i <= blueSquare; i++)
             {
                 var block = new Block(Shape.Square, Color.Blue);
                 Squares.Add(block);
             }
             
-            for (var i = 1; i <= numberOfYellowSquares; i++)
+            for (var i = 1; i <= yellowSquare; i++)
             {
                 var block = new Block(Shape.Square, Color.Yellow);
                 Squares.Add(block);
@@ -70,17 +79,22 @@ namespace KataToyBlockFactory
         {
             return Squares.Count;
         }
-        
-        // public Order(string name, string address, string date, int orderNumber, OrderStatus orderStatus = 
-        // OrderStatus.New)
-        // {
-        //     Name = name;
-        //     Address = address;
-        //     Date = date;
-        //     OrderNumber = orderNumber;
-        //     OrderStatus = orderStatus;
-        // }
-        
+
+        public int GetRedSquares()
+        {
+            return Squares.Count(x => x.Shape == Shape.Square && x.Color == Color.Red);
+        }
+
+
+        public int GetBlueSquares()
+        {
+            return Squares.Count(x => x.Shape == Shape.Square && x.Color == Color.Blue);
+        }
+
+        public int GetYellowSquares()
+        {
+            return Squares.Count(x => x.Shape == Shape.Square && x.Color == Color.Yellow);
+        }
     }
     
 }
