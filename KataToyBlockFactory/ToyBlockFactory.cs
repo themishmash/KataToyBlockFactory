@@ -24,10 +24,8 @@ namespace KataToyBlockFactory
         {
             return _totalToyBlockOrders.Count;
         }
+        
 
-        public PaintingReport CreatePaintingReport(Order order)
-        {
-            return new PaintingReport(order);
-        }
+       
     }
 }
