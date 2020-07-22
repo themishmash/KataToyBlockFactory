@@ -48,8 +48,6 @@ namespace KataToyBlockFactory.Tests
             Assert.Equal(DateTime.Today.AddDays(7), order.DueDate.Date);
             Assert.Equal(1, order.OrderNumber);
             Assert.Equal(2, order2.OrderNumber);
-          //  Assert.Equal(8, order.TotalBlocksOrder());
-           // Assert.Equal(1, toyBlockFactory.GetTotalOrders());
         }
         
         [Fact]
@@ -62,13 +60,12 @@ namespace KataToyBlockFactory.Tests
             order.AddBlock(Shape.Triangle, Color.Yellow);
             order.AddBlock(Shape.Square, Color.Red);
 
-            order.GetRedSquares();
-        
             var actual = toyBlockFactory.GetOrder(1);
             
-         
             Assert.Equal("James", actual.Name);
         }
+        
+        
         
         
 
