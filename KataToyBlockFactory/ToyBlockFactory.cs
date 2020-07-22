@@ -5,16 +5,33 @@ namespace KataToyBlockFactory
 {
     public class ToyBlockFactory
     {
-        private readonly List<Order> _totalToyBlockOrders = new List<Order>();
-        //private readonly List<Block> _totalPaintBlocks = new List<Block>();
+        private readonly List<Order> _orders = new List<Order>();
         private int _count;
 
-        public Order CreateOrder(string name, string address, string date, int redSquare, int blueSquare, int 
-        yellowSquare)
+        public Order CreateOrder(string name, string address)
         {
-            var order = new Order(name, address, date, redSquare, blueSquare, yellowSquare) {OrderNumber = CreateOrderNumber()};
-            //order.GetRedSquares();
-            _totalToyBlockOrders.Add(order);
+           return new Order(name, address);
+        }
+        
+        public Order CreateOrder(string name, string address, string date, int redSquare, int blueSquare, int 
+        yellowSquare, int redTriangle, int blueTriangle, int yellowTriangle, int redCircle, int blueCircle, int yellowCircle)
+        {
+            var order = new Order(name, address, date, redSquare, blueSquare, yellowSquare, redTriangle, 
+            blueTriangle, yellowTriangle, redCircle, blueCircle, yellowCircle) 
+            {OrderNumber = 
+            CreateOrderNumber()};
+            
+            _orders.Add(order);
+            return order;
+        }
+        
+        public Order CreateOrder(string name, string address, string date, int redSquare, int blueSquare, int 
+            yellowSquare)
+        {
+            var order = new Order(name, address, date, redSquare, blueSquare, yellowSquare) 
+            {OrderNumber = 
+                CreateOrderNumber()};
+            _orders.Add(order);
          
             return order;
         }
@@ -27,38 +44,69 @@ namespace KataToyBlockFactory
         
         public int GetTotalOrders()
         {
-            return _totalToyBlockOrders.Count;
-        }
-
-
-        public int GetRedSquaresToBePainted()
-        {
-            var numberOfRed = 0;
-            foreach (var order in _totalToyBlockOrders)
-            {
-                numberOfRed += order.GetRedSquares();
-            }
-            return numberOfRed;
+            return _orders.Count;
         }
         
-        public int GetBlueSquaresToBePainted()
+        public int GetTotalRedSquares()
         {
-            var numberOfBlue = 0;
-            foreach (var order in _totalToyBlockOrders)
-            {
-                numberOfBlue += order.GetBlueSquares();
-            }
-            return numberOfBlue;
+            return _orders.Sum(order => order.GetRedSquares());
+        }
+        
+        public int GetTotalBlueSquares()
+        {
+            return _orders.Sum(order => order.GetBlueSquares());
+        }
+        
+        public int GetTotalYellowSquares()
+        {
+            return _orders.Sum(order => order.GetYellowSquares());
+        }
+        
+        public int GetTotalRedTriangles()
+        {
+            return _orders.Sum(order => order.GetRedTriangles());
+        }
+        
+        public int GetTotalBlueTriangles()
+        {
+            return _orders.Sum(order => order.GetBlueTriangles());
         }
 
-        public int GetYellowSquaresToBePainted()
+        public int GetTotalYellowTriangles()
         {
-            var numberOfyellow = 0;
-            foreach (var order in _totalToyBlockOrders)
-            {
-                numberOfyellow += order.GetYellowSquares();
-            }
-            return numberOfyellow;
+            return _orders.Sum(order => order.GetYellowTriangles());
         }
+        
+        public int GetTotalRedCircles()
+        {
+            return _orders.Sum(order => order.GetRedCircles());
+        }
+        
+        public int GetTotalBlueCircles()
+        {
+            return _orders.Sum(order => order.GetBlueCircles());
+        }
+        
+        public int GetTotalYellowCircles()
+        {
+            return _orders.Sum(order => order.GetYellowCircles());
+        }
+
+        public int GetTotalSquares()
+        {
+            return _orders.Sum(order => order.GetSquares());
+        }
+
+        public int GetTotalTriangles()
+        {
+            return _orders.Sum(order => order.GetTriangles());
+        }
+
+        public int GetTotalCircles()
+        {
+            return _orders.Sum(order => order.GetCircles());
+        }
+
+        
     }
 }

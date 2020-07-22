@@ -1,36 +1,12 @@
+using System;
 using Xunit;
 
 namespace KataToyBlockFactory.Tests
 {
     public class OrderTest
     {
-        // [Fact]
-        // public void NewOrdersHaveOrderStatusOfNew()
-        // {
-        //     var order = new Order("James", "123 Smith Street, Fitzroy");
-        //     // var paintingReport = new PaintingReport();
-        //     // var cuttingReport = new CuttingReport();
-        //     // var priceCalculator = new PriceCalculator();
-        //     // var toyBlockFactory = new ToyBlockFactory(order, paintingReport, cuttingReport, priceCalculator);
-        //     //
-        //     // Assert.Equal(1, toyBlockFactory.GetNumberOfBlocksToBePainted());
-        //     Assert.Equal(OrderStatus.New, order.OrderStatus);
-        // }
 
-        // [Fact]
-        // public void OrdersHaveAllNecessaryFields()
-        // {
-        //    //  var order = new Order("James", "123 Smith Street, Fitzroy", "20 October 2020", 1);
-        //    //
-        //    //  Assert.Equal(OrderStatus.New, order.OrderStatus);
-        //    //  Assert.Equal("James", order.Name);
-        //    //  Assert.Equal("123 Smith Street, Fitzroy", order.Address);
-        //    // // Assert.Equal("20 October 2020", order.Date);
-        //    //  Assert.Equal(1, order.OrderNumber);
-        //    //  Assert.Equal(1, order.GetBlockQuantity());
-        // }
-        
-        
+
         /*
              * new block factory
              * factory . create order( )   return new Order
@@ -58,16 +34,34 @@ namespace KataToyBlockFactory.Tests
         public void CanCreateOrder()
         {
             var toyBlockFactory = new ToyBlockFactory();
-            var order = toyBlockFactory.CreateOrder("James", "123 Smith Street, Fitzroy", "10/10/20", 5, 2, 1);
-            var expectedDate = order.Date;
-            
+            var order = toyBlockFactory.CreateOrder("James", "123 Smith Street, Fitzroy");
+            order.DueDate = order.DueDate.AddDays(7);
+            order.AddBlock(Shape.Circle, Color.Blue);
+            order.AddBlock(Shape.Triangle, Color.Yellow);
+            order.AddBlock(Shape.Square, Color.Red);
+
             Assert.Equal(OrderStatus.New, order.OrderStatus);
             Assert.Equal("James", order.Name);
             Assert.Equal("123 Smith Street, Fitzroy", order.Address);
-            Assert.Equal(expectedDate, order.Date);
+            Assert.Equal(DateTime.Today, order.DueDate.Date);
             Assert.Equal(1, order.OrderNumber);
             Assert.Equal(8, order.TotalBlocksOrder());
             Assert.Equal(1, toyBlockFactory.GetTotalOrders());
+        }
+        
+        [Fact]
+        public void CanRetrieveOrder()
+        {
+            var toyBlockFactory = new ToyBlockFactory();
+            var order = toyBlockFactory.CreateOrder("James", "123 Smith Street, Fitzroy");
+            order.DueDate = order.DueDate.AddDays(7);
+            order.AddBlock(Shape.Circle, Color.Blue);
+            order.AddBlock(Shape.Triangle, Color.Yellow);
+            order.AddBlock(Shape.Square, Color.Red);
+
+            var actual = toyBlockFactory.GetOrder(1);
+         
+            Assert.Equal("James", actual.Name);
         }
 
         [Fact]
@@ -83,23 +77,41 @@ namespace KataToyBlockFactory.Tests
         }
 
         [Fact]
-        public void CanCreatePaintingReport()
+        public void CanTotalBlocksByShapeAndColor()
         {
             var toyBlockFactory = new ToyBlockFactory();
-            var order = toyBlockFactory.CreateOrder("James", "123 Smith Street, Fitzroy", "10/10/20", 5, 2, 1);
-            var order2 = toyBlockFactory.CreateOrder("James", "123 Smith Street, Fitzroy", "10/10/20", 5, 2, 1);
-          //  var painting = toyBlockFactory.CreatePaintingReport(order);
-            
-           Assert.Equal(10, toyBlockFactory.GetRedSquaresToBePainted());
-           Assert.Equal(4, toyBlockFactory.GetBlueSquaresToBePainted());
-           Assert.Equal(2, toyBlockFactory.GetYellowSquaresToBePainted());
+            toyBlockFactory.CreateOrder("James", "123 Smith Street, Fitzroy", "10/10/20", 5, 2, 1);
+            toyBlockFactory.CreateOrder("Jimbo", "12 Smith Street, Fitzroy", "10/10/20", 5, 2, 1);
+
+            Assert.Equal(10, toyBlockFactory.GetTotalRedSquares());
+            Assert.Equal(4, toyBlockFactory.GetTotalBlueSquares());
+            Assert.Equal(2, toyBlockFactory.GetTotalYellowSquares());
            
            //todo create method in toyblock factory to add blocks to be painted? eg find all that are square red, square blue, square yellow etc. 
-           
            //todo find redsquares in order class
-           //add to 
-           
-
         }
+
+        [Fact]
+        public void CanTotalBlocksByShape()
+        {
+            var toyBlockFactory = new ToyBlockFactory();
+            toyBlockFactory.CreateOrder("James", "123 Smith Street, Fitzroy", "10/10/20", 5, 2, 1, 2, 2, 2, 1, 1, 1);
+            toyBlockFactory.CreateOrder("Jimbo", "12 Smith Street, Fitzroy", "10/10/20", 5, 2, 1, 1, 0, 1, 1, 1, 1);
+            
+            Assert.Equal(16, toyBlockFactory.GetTotalSquares());
+            Assert.Equal(8, toyBlockFactory.GetTotalTriangles());
+            Assert.Equal(6, toyBlockFactory.GetTotalCircles());
+        }
+
+        // [Fact]
+        // public void OrdersCanHavePrice()
+        // {
+        //     var toyBlockFactory = new ToyBlockFactory();
+        //     var order = toyBlockFactory.CreateOrder("James", "123 Smith Street, Fitzroy", "10/10/20", 1,1,1,1,1,1,1,1,1);
+        //     var priceCalculator = new PriceCalculator(order);
+        //     
+        //     Assert.Equal();
+        // }
+        
     }
 }
