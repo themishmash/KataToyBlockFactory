@@ -6,9 +6,10 @@ namespace KataToyBlockFactory
 {
     public class ToyBlockFactory
     {
+       
         private readonly List<Order> _orders = new List<Order>();
         private int _count;
-
+        
         public Order CreateOrder(string name, string address)
         {
            var order = new Order(name, address){OrderNumber = CreateOrderNumber()};
@@ -27,13 +28,22 @@ namespace KataToyBlockFactory
             return _count;
         }
         
-        public int GetTotalOrders()
-        {
-            return _orders.Count;
-        }
         
-        
-
        
+
+        public IEnumerable<Shape> GetAvailableShapes()
+        {
+            throw new NotImplementedException();
+        }
+
+        public OrderStatus GetOrderStatus(int i)
+        {
+            throw new NotImplementedException();
+        }
+
+        public CuttingReport GetCuttingReport()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

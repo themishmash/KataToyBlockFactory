@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using Xunit;
 
 namespace KataToyBlockFactory.Tests
@@ -30,42 +31,39 @@ namespace KataToyBlockFactory.Tests
 
         //create new toy block factory
         //will need inputoutput interface
-        [Fact]
-        public void CanCreateOrder()
-        {
-            var toyBlockFactory = new ToyBlockFactory();
-            var order = toyBlockFactory.CreateOrder("James", "123 Smith Street, Fitzroy");
-            order.DueDate = order.DueDate.AddDays(7);
-            order.AddBlock(Shape.Circle, Color.Blue);
-            order.AddBlock(Shape.Triangle, Color.Yellow);
-            order.AddBlock(Shape.Square, Color.Red);
-            
-            var order2 = toyBlockFactory.CreateOrder("James", "123 Smith Street, Fitzroy");
+       
+        
+        // [Fact]
+        // public void CanRetrieveOrder()
+        // {
+        //     var toyBlockFactory = new ToyBlockFactory();
+        //     var order = toyBlockFactory.CreateOrder("James", "123 Smith Street, Fitzroy");
+        //     order.DueDate = order.DueDate.AddDays(7);
+        //     order.AddBlock(Shape.Circle, Color.Blue);
+        //     order.AddBlock(Shape.Triangle, Color.Yellow);
+        //     order.AddBlock(Shape.Square, Color.Red);
+        //
+        //     Assert.Equal("James", toyBlockFactory.GetOrder(1).Name);
+        // }
+        //
+        // [Fact]
+        // public void GetBlocksFromOrder()
+        // {
+        //     var toyBlockFactory = new ToyBlockFactory();
+        //     var order = toyBlockFactory.CreateOrder("James", "12 Smith street");
+        //     order.AddBlock(Shape.Square, Color.Blue);
+        //     order.AddBlock(Shape.Triangle, Color.Red);
+        //     order.AddBlock(Shape.Triangle, Color.Blue);
+        //
+        //     var result = toyBlockFactory.GetBlocksFromOrder(); //put into list. create cuting report is list of all blocks
+        //     
+        //     Assert.Equal(1, result.Count(x => x.Shape == Shape.Square));
+        //     Assert.Equal(2, result.Count(x => x.Shape == Shape.Triangle));
+        //     Assert.Equal(2, result.Count(x=> x.Color == Color.Blue));
+        //     Assert.Equal(1, result.Count(x=>x.Color == Color.Red));
+        //    
+        // }
 
-            Assert.Equal(OrderStatus.New, order.OrderStatus);
-            Assert.Equal("James", order.Name);
-            Assert.Equal("123 Smith Street, Fitzroy", order.Address);
-            Assert.Equal(DateTime.Today.AddDays(7), order.DueDate.Date);
-            Assert.Equal(1, order.OrderNumber);
-            Assert.Equal(2, order2.OrderNumber);
-        }
-        
-        [Fact]
-        public void CanRetrieveOrder()
-        {
-            var toyBlockFactory = new ToyBlockFactory();
-            var order = toyBlockFactory.CreateOrder("James", "123 Smith Street, Fitzroy");
-            order.DueDate = order.DueDate.AddDays(7);
-            order.AddBlock(Shape.Circle, Color.Blue);
-            order.AddBlock(Shape.Triangle, Color.Yellow);
-            order.AddBlock(Shape.Square, Color.Red);
-
-            var actual = toyBlockFactory.GetOrder(1);
-            
-            Assert.Equal("James", actual.Name);
-        }
-        
-        
         
         
 

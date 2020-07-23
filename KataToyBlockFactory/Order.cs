@@ -6,10 +6,10 @@ namespace KataToyBlockFactory
 {
     public class Order
     {
-        public string Name { get; }
-        public OrderStatus OrderStatus { get; private set; }
-        public string Address { get; private set; }
-
+        // public string Name { get; }
+        // public OrderStatus OrderStatus { get; private set; }
+        // public string Address { get; private set; }
+        //
         public DateTime DueDate
         {
             get => _dueDate;
@@ -20,31 +20,47 @@ namespace KataToyBlockFactory
                 _dueDate = value;
             }
         }
-
-        public int OrderNumber { get; set; }
-
+        //
+        // public int OrderNumber { get; set; }
+        //
         private DateTime _dueDate = DateTime.Today;
-        
-        private readonly IList <Block>_blocks = new List<Block>();
-        
+        //
+        // private readonly IList <Block>_blocks = new List<Block>();
+        //
         public Order(string name, string address)
         {
             Name = name;
             Address = address;
-            OrderNumber = 0;
         }
-        
-        public void AddBlock(Shape shape, Color color)
+        //
+        // public void AddBlock(Shape shape, Color color)
+        // {
+        //     _blocks.Add(new Block(shape, color));
+        // }
+        //
+        // public IList<Block> GetAllBlocks()
+        // {
+        //     return _blocks;
+        // }
+
+
+        public void AddBlock(Shape circle, Color blue)
         {
-            _blocks.Add(new Block(shape, color));
+            throw new NotImplementedException();
         }
 
-        public int GetRedSquares()
-        {
-            return _blocks.Count(block => block.Shape == Shape.Square && block.Color == Color.Red);
-        }
-        
+        public IEnumerable<char> Name { get; set; }
+        public IEnumerable<char> Address { get; set; }
+        public int OrderNumber { get; set; }
 
-      
+        public int CountShape(Shape circle)
+        {
+            throw new NotImplementedException();
+        }
+
+        public int CountColor(Color red)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
