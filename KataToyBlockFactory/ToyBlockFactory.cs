@@ -28,22 +28,24 @@ namespace KataToyBlockFactory
             return _count;
         }
         
+        public OrderStatus GetOrderStatus(int orderNumber)
+        {
+            return _orders.Any(order => order.OrderNumber == orderNumber) ? OrderStatus.New : OrderStatus.None;
+        }
+
+        public IEnumerable<Order> GetAllOrders()
+        {
+            return _orders;
+        }
         
-       
-
-        public IEnumerable<Shape> GetAvailableShapes()
-        {
-            throw new NotImplementedException();
-        }
-
-        public OrderStatus GetOrderStatus(int i)
-        {
-            throw new NotImplementedException();
-        }
-
         public CuttingReport GetCuttingReport()
         {
-            throw new NotImplementedException();
+            foreach (var order in _orders)
+            {
+                return new CuttingReport(order);
+            }
+
+            return null;
         }
     }
 }

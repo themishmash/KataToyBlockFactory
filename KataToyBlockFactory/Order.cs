@@ -6,10 +6,10 @@ namespace KataToyBlockFactory
 {
     public class Order
     {
-        // public string Name { get; }
-        // public OrderStatus OrderStatus { get; private set; }
-        // public string Address { get; private set; }
-        //
+        public string Name { get; }
+        public OrderStatus OrderStatus { get; private set; }
+        public string Address { get; private set; }
+        
         public DateTime DueDate
         {
             get => _dueDate;
@@ -20,47 +20,32 @@ namespace KataToyBlockFactory
                 _dueDate = value;
             }
         }
-        //
-        // public int OrderNumber { get; set; }
-        //
-        private DateTime _dueDate = DateTime.Today;
-        //
-        // private readonly IList <Block>_blocks = new List<Block>();
-        //
+        
+        public int OrderNumber { get; set; }
+        
+        private DateTime _dueDate = DateTime.Today.AddDays(7);
+        
+        private readonly IList <Block>_blocks = new List<Block>();
+        
         public Order(string name, string address)
         {
             Name = name;
             Address = address;
         }
-        //
-        // public void AddBlock(Shape shape, Color color)
-        // {
-        //     _blocks.Add(new Block(shape, color));
-        // }
-        //
-        // public IList<Block> GetAllBlocks()
-        // {
-        //     return _blocks;
-        // }
-
-
-        public void AddBlock(Shape circle, Color blue)
+        
+        public void AddBlock(Shape shape, Color color)
         {
-            throw new NotImplementedException();
+            _blocks.Add(new Block(shape, color));
+        }
+        
+        public int CountShape(Shape shape)
+        {
+            return _blocks.Count(block => block.Shape == shape);
         }
 
-        public IEnumerable<char> Name { get; set; }
-        public IEnumerable<char> Address { get; set; }
-        public int OrderNumber { get; set; }
-
-        public int CountShape(Shape circle)
+        public int CountColor(Color color)
         {
-            throw new NotImplementedException();
-        }
-
-        public int CountColor(Color red)
-        {
-            throw new NotImplementedException();
+            return _blocks.Count(block => block.Color == color);
         }
     }
 }

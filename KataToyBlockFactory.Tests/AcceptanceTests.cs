@@ -62,7 +62,7 @@ namespace KataToyBlockFactory.Tests
             order2.AddBlock(Shape.Triangle, Color.Yellow);
             order2.AddBlock(Shape.Square, Color.Yellow);
             order2.AddBlock(Shape.Square, Color.Red);
-
+        
             var cuttingReport = toyBlockFactory.GetCuttingReport();
             
             Assert.Equal(2, cuttingReport.GetShape(Shape.Triangle));
@@ -71,18 +71,18 @@ namespace KataToyBlockFactory.Tests
             
         }
 
-        [Fact]
-        public void Experiment()
-        {
-            var toyBlockFactory = new ToyBlockFactory();
-            var cuttingReport = toyBlockFactory.GetCuttingReport();
-            foreach (Shape shape in toyBlockFactory.GetAvailableShapes())
-            {
-                cuttingReport.GetShape(shape);
-            }
-           
-            
-        }
+        // [Fact]
+        // public void Experiment()
+        // {
+        //     var toyBlockFactory = new ToyBlockFactory();
+        //     var cuttingReport = toyBlockFactory.GetCuttingReport();
+        //     foreach (Shape shape in toyBlockFactory.GetAvailableShapes())
+        //     {
+        //         cuttingReport.GetShape(shape);
+        //     }
+        //    
+        //     
+        // }
 
        //ordernumbertest - in toyblock factory
        //due date test - in order class

@@ -4,25 +4,19 @@ namespace KataToyBlockFactory
 {
     public class CuttingReport
     {
-        // private readonly Shape _shape;
-        // private readonly int _amount;
-        //
-        //
-        // public CuttingReport(Shape shape, int amount)
-        // {
-        //     _shape = shape;
-        //     _amount = amount;
-        // }
-        //
-        // public void GetShape()
-        // {
-        //     
-        // }
+        private readonly Order _order;
 
-
-        public int GetShape(Shape triangle)
+        public CuttingReport(Order order)
         {
-            throw new System.NotImplementedException();
+            _order = order;
+           
         }
+
+        public int GetShape(Shape shape)
+        {
+            return _order.CountShape(shape);
+        }
+        
+        
     }
 }
