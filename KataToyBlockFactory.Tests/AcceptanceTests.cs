@@ -66,9 +66,31 @@ namespace KataToyBlockFactory.Tests
             var cuttingReport = toyBlockFactory.GetCuttingReport();
             
             Assert.Equal(2, cuttingReport.GetShape(Shape.Triangle));
-            Assert.Equal(4, cuttingReport.GetShape(Shape.Triangle));
+            Assert.Equal(2, cuttingReport.GetShape(Shape.Triangle));
             Assert.Equal(1, cuttingReport.GetShape(Shape.Circle));
             
+        }
+
+        [Fact]
+        public void CreatePaintingReport()
+        {
+            var toyBlockFactory = new ToyBlockFactory();
+            var order = toyBlockFactory.CreateOrder("James", "123 Smith Street, Fitzroy");
+            order.AddBlock(Shape.Circle, Color.Blue);
+            order.AddBlock(Shape.Square, Color.Blue);
+            order.AddBlock(Shape.Square, Color.Red);
+            
+            var order2 = toyBlockFactory.CreateOrder("James", "123 Smith Street, Fitzroy");
+            order2.AddBlock(Shape.Triangle, Color.Blue);
+            order2.AddBlock(Shape.Triangle, Color.Blue);
+            order2.AddBlock(Shape.Triangle, Color.Yellow);
+            order2.AddBlock(Shape.Square, Color.Yellow);
+            order2.AddBlock(Shape.Square, Color.Red);
+
+            var paintingReport = toyBlockFactory.GetPaintingReport();
+            
+            //Assert.Equal(2, paintingReport.GetBlockShapeAndColor(Shape.Square, Color.Red));
+            Assert.Equal(2, paintingReport.GetBlockShapeAndColor(Shape.Triangle, Color.Blue));
         }
 
         // [Fact]

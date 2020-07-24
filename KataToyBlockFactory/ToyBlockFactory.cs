@@ -33,19 +33,39 @@ namespace KataToyBlockFactory
             return _orders.Any(order => order.OrderNumber == orderNumber) ? OrderStatus.New : OrderStatus.None;
         }
 
-        public IEnumerable<Order> GetAllOrders()
-        {
-            return _orders;
-        }
-        
         public CuttingReport GetCuttingReport()
         {
-            foreach (var order in _orders)
+            var cuttingReport = new CuttingReport(_orders);
+            foreach (var shape in GetAvailableShapes())
             {
-                return new CuttingReport(order);
+                cuttingReport.GetShape(shape);
             }
-
-            return null;
+            return cuttingReport;
         }
+
+        public PaintingReport GetPaintingReport()
+        {
+            var paintingReport = new PaintingReport(_orders);
+            foreach (var shape in GetAvailableShapes())
+            {
+                foreach (var color in GetAvailableColors())
+                {
+                    paintingReport.GetBlockShapeAndColor(shape, color);
+                }
+            }
+            
+            return paintingReport;
+        }
+        
+        private static IEnumerable<Shape> GetAvailableShapes()
+        {
+            return Enum.GetValues(typeof(Shape)).Cast<Shape>().ToList();
+        }
+
+        private static IEnumerable<Color> GetAvailableColors()
+        {
+            return Enum.GetValues(typeof(Color)).Cast<Color>().ToList();
+        }
+        
     }
 }
