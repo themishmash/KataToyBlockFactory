@@ -22,5 +22,13 @@ namespace KataToyBlockFactory.Tests
             
             Assert.Equal(2, order.OrderNumber);
         }
+
+        [Fact]
+        public void OrdersStartWithNewStatus()
+        {
+            var toyBlockFactory = new ToyBlockFactory();
+            var order = toyBlockFactory.CreateOrder("", "");
+            Assert.Equal(OrderStatus.New, order.OrderStatus);
+        }
     }
 }

@@ -53,7 +53,6 @@ namespace KataToyBlockFactory
                     paintingReport.GetBlockShapeAndColor(shape, color);
                 }
             }
-            
             return paintingReport;
         }
         
