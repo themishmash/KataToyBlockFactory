@@ -56,6 +56,38 @@ namespace KataToyBlockFactory
             return paintingReport;
         }
         
+        // public InvoiceReport GetInvoiceReport()
+        // {
+        //     var invoiceReport = new InvoiceReport(_orders);
+        //
+        //     foreach (var order in _orders)
+        //     {
+        //         // foreach (var block in order.GetBlock())
+        //         // {
+        //             //var totalOrder = order.CountColorAndShape(block.Shape, block.Color);
+        //             invoiceReport.GetPrice(order);
+        //        // }
+        //     }
+        //
+        //     return invoiceReport;
+        // }
+        
+        public int GetInvoiceReport()
+        {
+            //var invoiceReport = new InvoiceReport(_orders);
+            
+            foreach (var order in _orders)
+            {
+                // foreach (var block in order.GetBlock())
+                // {
+                //var totalOrder = order.CountColorAndShape(block.Shape, block.Color);
+                return Calculator.GetPrice(order);
+                // }
+            }
+
+            return 0;
+        }
+        
         private static IEnumerable<Shape> GetAvailableShapes()
         {
             return Enum.GetValues(typeof(Shape)).Cast<Shape>().ToList();
@@ -65,6 +97,7 @@ namespace KataToyBlockFactory
         {
             return Enum.GetValues(typeof(Color)).Cast<Color>().ToList();
         }
+
         
     }
 }

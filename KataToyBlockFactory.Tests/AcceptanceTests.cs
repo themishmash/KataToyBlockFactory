@@ -89,25 +89,26 @@ namespace KataToyBlockFactory.Tests
 
             var paintingReport = toyBlockFactory.GetPaintingReport();
             
-            //Assert.Equal(2, paintingReport.GetBlockShapeAndColor(Shape.Square, Color.Red));
+            Assert.Equal(2, paintingReport.GetBlockShapeAndColor(Shape.Square, Color.Red));
             Assert.Equal(2, paintingReport.GetBlockShapeAndColor(Shape.Triangle, Color.Blue));
+            Assert.Equal(1, paintingReport.GetBlockShapeAndColor(Shape.Square, Color.Yellow));
         }
-
-        // [Fact]
-        // public void Experiment()
-        // {
-        //     var toyBlockFactory = new ToyBlockFactory();
-        //     var cuttingReport = toyBlockFactory.GetCuttingReport();
-        //     foreach (Shape shape in toyBlockFactory.GetAvailableShapes())
-        //     {
-        //         cuttingReport.GetShape(shape);
-        //     }
-        //    
-        //     
-        // }
-
-       //ordernumbertest - in toyblock factory
+        
        //due date test - in order class
        //order status - toyblock factory
+       
+       //todo acceptance test for price/invoice stuff
+       [Fact]
+       public void CreateInvoice()
+       {
+           var toyBlockFactory = new ToyBlockFactory();
+           var order = toyBlockFactory.CreateOrder("James", "123 Smith Street, Fitzroy");
+           order.AddBlock(Shape.Circle, Color.Blue);
+           order.AddBlock(Shape.Square, Color.Blue);
+           order.AddBlock(Shape.Square, Color.Yellow);
+
+          var invoiceReport = toyBlockFactory.GetInvoiceReport();
+           Assert.Equal(5, Calculator.GetPrice(order));
+       }
     }
 }

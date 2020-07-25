@@ -3,7 +3,6 @@ using System.Linq;
 
 namespace KataToyBlockFactory
 {
-   
     public class CuttingReport
     {
         private readonly List<Order> _orders;

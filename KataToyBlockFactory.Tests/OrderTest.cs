@@ -20,6 +20,16 @@ namespace KataToyBlockFactory.Tests
             Assert.Equal("James", toyBlockFactory.GetOrder(1).Name);
         }
 
+        [Fact]
+        public void HasDueDate()
+        {
+            var toyBlockFactory = new ToyBlockFactory();
+            var order = toyBlockFactory.CreateOrder("James", "123 Smith St");
+
+            Assert.Equal(DateTime.Today.AddDays(7), order.DueDate.Date);
+        }
+        
+
         /*
              * new block factory
              * factory . create order( )   return new Order

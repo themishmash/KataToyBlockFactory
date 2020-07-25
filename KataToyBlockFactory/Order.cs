@@ -52,6 +52,11 @@ namespace KataToyBlockFactory
         {
             return _blocks.Count(block => block.Shape == shape && block.Color == color);
         }
+
+        public IEnumerable<Block> GetBlock()
+        {
+            return _blocks;
+        }
     
         
     }
