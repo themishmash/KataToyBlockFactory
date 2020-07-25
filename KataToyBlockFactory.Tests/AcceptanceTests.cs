@@ -99,16 +99,15 @@ namespace KataToyBlockFactory.Tests
        
        //todo acceptance test for price/invoice stuff
        [Fact]
-       public void CreateInvoice()
+       public void CreatePriceCalculator()
        {
            var toyBlockFactory = new ToyBlockFactory();
            var order = toyBlockFactory.CreateOrder("James", "123 Smith Street, Fitzroy");
            order.AddBlock(Shape.Circle, Color.Blue);
            order.AddBlock(Shape.Square, Color.Blue);
            order.AddBlock(Shape.Square, Color.Yellow);
-
-          var invoiceReport = toyBlockFactory.GetInvoiceReport();
-           Assert.Equal(5, Calculator.GetPrice(order));
+           
+           Assert.Equal(5, PriceCalculator.GetPrice(order));
        }
     }
 }

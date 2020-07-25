@@ -3,28 +3,9 @@ using System.Collections.Generic;
 
 namespace KataToyBlockFactory
 {
-    public static class Calculator
+    public static class PriceCalculator
     {
-        //private readonly List<Order> _orders;
-        //
-        // public InvoiceReport(List<Order> orders)
-        // {
-        //     _orders = orders;
-        // }
-
-        // private readonly List<Order> _orders;
-        //
-        // public InvoiceReport(List<Order> orders)
-        // {
-        //     _orders = orders;
-        // }
-        // public int GetOrder()
-        // {
-        //     throw new System.NotImplementedException();
-        //order.PriceCalculator?
-        // }
-      
-
+        
         public static int GetPrice(Order order)
         {
             var total = 0;

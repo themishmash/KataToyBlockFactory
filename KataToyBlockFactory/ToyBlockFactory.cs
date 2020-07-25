@@ -81,7 +81,7 @@ namespace KataToyBlockFactory
                 // foreach (var block in order.GetBlock())
                 // {
                 //var totalOrder = order.CountColorAndShape(block.Shape, block.Color);
-                return Calculator.GetPrice(order);
+                return PriceCalculator.GetPrice(order);
                 // }
             }
 
