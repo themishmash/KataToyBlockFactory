@@ -106,8 +106,9 @@ namespace KataToyBlockFactory.Tests
            order.AddBlock(Shape.Circle, Color.Blue);
            order.AddBlock(Shape.Square, Color.Blue);
            order.AddBlock(Shape.Square, Color.Yellow);
+           order.AddBlock(Shape.Triangle, Color.Red);
            
-           Assert.Equal(5, PriceCalculator.GetPrice(order));
+           Assert.Equal(8, PriceCalculator.GetPrice(order));
        }
     }
 }

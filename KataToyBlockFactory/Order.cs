@@ -31,6 +31,7 @@ namespace KataToyBlockFactory
         {
             Name = name;
             Address = address;
+            OrderStatus = OrderStatus.New;
         }
         
         public void AddBlock(Shape shape, Color color)
