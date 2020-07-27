@@ -14,7 +14,7 @@ namespace KataToyBlockFactory
 
         public int GetBlockShapeAndColor(Shape shape, Color color)
         {
-            return _orders.Sum(order => order.CountColorAndShape(shape, color));
+            return _orders.Sum(order => order.CountShapeAndColor(shape, color));
         }
     }
 }

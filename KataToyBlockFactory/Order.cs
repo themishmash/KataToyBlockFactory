@@ -7,8 +7,8 @@ namespace KataToyBlockFactory
     public class Order
     {
         public string Name { get; }
-        public OrderStatus OrderStatus { get; private set; }
-        public string Address { get; private set; }
+        public OrderStatus OrderStatus { get; set; }
+        public string Address { get; }
         
         public DateTime DueDate
         {
@@ -31,7 +31,6 @@ namespace KataToyBlockFactory
         {
             Name = name;
             Address = address;
-            OrderStatus = OrderStatus.New;
         }
         
         public void AddBlock(Shape shape, Color color)
@@ -49,12 +48,12 @@ namespace KataToyBlockFactory
             return _blocks.Count(block => block.Color == color);
         }
 
-        public int CountColorAndShape(Shape shape, Color color)
+        public int CountShapeAndColor(Shape shape, Color color)
         {
             return _blocks.Count(block => block.Shape == shape && block.Color == color);
         }
 
-        public IEnumerable<Block> GetBlock()
+        public IEnumerable<Block> GetBlocks()
         {
             return _blocks;
         }

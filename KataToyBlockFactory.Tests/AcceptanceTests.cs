@@ -1,6 +1,4 @@
 using System;
-using System.Linq;
-using KataToyBlockFactory;
 using Xunit;
 
 namespace KataToyBlockFactory.Tests
@@ -68,7 +66,6 @@ namespace KataToyBlockFactory.Tests
             Assert.Equal(2, cuttingReport.GetShape(Shape.Triangle));
             Assert.Equal(2, cuttingReport.GetShape(Shape.Triangle));
             Assert.Equal(1, cuttingReport.GetShape(Shape.Circle));
-            
         }
 
         [Fact]
@@ -99,7 +96,7 @@ namespace KataToyBlockFactory.Tests
        
        //todo acceptance test for price/invoice stuff
        [Fact]
-       public void CreatePriceCalculator()
+       public void GetInvoiceReport()
        {
            var toyBlockFactory = new ToyBlockFactory();
            var order = toyBlockFactory.CreateOrder("James", "123 Smith Street, Fitzroy");
@@ -108,7 +105,13 @@ namespace KataToyBlockFactory.Tests
            order.AddBlock(Shape.Square, Color.Yellow);
            order.AddBlock(Shape.Triangle, Color.Red);
            
-           Assert.Equal(8, PriceCalculator.GetPrice(order));
+           var invoiceReport = toyBlockFactory.GetInvoice();
+           
+           Assert.Equal(8, invoiceReport.GetPrice(order));
        }
+       
+       //todo Acceptance test for invoice? //or createOrderWithInput? 
+       
+       
     }
 }

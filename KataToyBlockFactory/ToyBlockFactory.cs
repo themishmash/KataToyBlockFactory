@@ -12,7 +12,7 @@ namespace KataToyBlockFactory
         
         public Order CreateOrder(string name, string address)
         {
-           var order = new Order(name, address){OrderNumber = CreateOrderNumber()};
+           var order = new Order(name, address){OrderNumber = CreateOrderNumber(), OrderStatus = OrderStatus.New};
            _orders.Add(order);
            return order;
         }
@@ -66,6 +66,15 @@ namespace KataToyBlockFactory
             return Enum.GetValues(typeof(Color)).Cast<Color>().ToList();
         }
 
-        
+        public InvoiceReport GetInvoice()
+        {
+            var invoiceReport = new InvoiceReport();
+            foreach (var order in _orders)
+            {
+                invoiceReport.GetPrice(order);
+            }
+
+            return invoiceReport;
+        }
     }
 }
