@@ -26,17 +26,18 @@ namespace KataToyBlockFactory.Tests
         }
         
         [Fact]
-        public void PlacingAnOrder()
+        public void Placing_An_Order_Will_Create_New_Order()
         {
             var toyBlockFactory = new ToyBlockFactory();
             var order = toyBlockFactory.CreateOrder("James", "123 Smith Street, Fitzroy");
+            order.DueDate = DateTime.Today;
             order.AddBlock(Shape.Circle, Color.Blue);
             order.AddBlock(Shape.Triangle, Color.Yellow);
             order.AddBlock(Shape.Square, Color.Red);
             
             Assert.Equal("James", order.Name);
             Assert.Equal("123 Smith Street, Fitzroy", order.Address);
-            Assert.Equal(DateTime.Today.AddDays(7), order.DueDate.Date);
+            Assert.Equal(DateTime.Today, order.DueDate);
             Assert.Equal(1, order.OrderNumber);
             Assert.Equal(1, order.CountShape(Shape.Circle));
             Assert.Equal(1, order.CountColor(Color.Red));
@@ -46,7 +47,7 @@ namespace KataToyBlockFactory.Tests
         }
 
         [Fact]
-        public void CreateCuttingReport()
+        public void Create_Cutting_Report_Will_Return_Number_Of_Shapes_For_Single_Order()
         {
             //Arrange
             var toyBlockFactory = new ToyBlockFactory();
@@ -54,22 +55,22 @@ namespace KataToyBlockFactory.Tests
             order.AddBlock(Shape.Circle, Color.Blue);
             order.AddBlock(Shape.Square, Color.Blue);
             order.AddBlock(Shape.Square, Color.Red);
+            order.AddBlock(Shape.Triangle, Color.Blue);
+            order.AddBlock(Shape.Triangle, Color.Yellow);
+            order.AddBlock(Shape.Square, Color.Yellow);
+            order.AddBlock(Shape.Square, Color.Red);
+
+            toyBlockFactory.GetSingleOrderCuttingReport(); 
             
-            var order2 = toyBlockFactory.CreateOrder("James", "123 Smith Street, Fitzroy");
-            order2.AddBlock(Shape.Triangle, Color.Blue);
-            order2.AddBlock(Shape.Triangle, Color.Yellow);
-            order2.AddBlock(Shape.Square, Color.Yellow);
-            order2.AddBlock(Shape.Square, Color.Red);
-        
-            var cuttingReport = toyBlockFactory.GetCuttingReport();
-            
-            Assert.Equal(2, cuttingReport.GetShape(Shape.Triangle));
-            Assert.Equal(2, cuttingReport.GetShape(Shape.Triangle));
-            Assert.Equal(1, cuttingReport.GetShape(Shape.Circle));
+            Assert.Equal(2, CuttingReport.GetShape(Shape.Triangle));
+            Assert.Equal(4, CuttingReport.GetShape(Shape.Square));
+            Assert.Equal(1, CuttingReport.GetShape(Shape.Circle));
         }
+        
+        //todo create test for single order cutting report and painting report
 
         [Fact]
-        public void CreatePaintingReport()
+        public void Create_Painting_Report_Will_Return_Number_Of_Shapes_And_Number_Of_Colors()
         {
             var toyBlockFactory = new ToyBlockFactory();
             var order = toyBlockFactory.CreateOrder("James", "123 Smith Street, Fitzroy");
@@ -96,7 +97,7 @@ namespace KataToyBlockFactory.Tests
        
        //todo acceptance test for price/invoice stuff
        [Fact]
-       public void GetInvoiceReport()
+       public void Create_Invoice_Report_Will_Return_Price_Of_Order()
        {
            var toyBlockFactory = new ToyBlockFactory();
            var order = toyBlockFactory.CreateOrder("James", "123 Smith Street, Fitzroy");
@@ -105,13 +106,12 @@ namespace KataToyBlockFactory.Tests
            order.AddBlock(Shape.Square, Color.Yellow);
            order.AddBlock(Shape.Triangle, Color.Red);
            
-           var invoiceReport = toyBlockFactory.GetInvoice();
+           var invoiceReport = toyBlockFactory.GetInvoiceReport();
            
            Assert.Equal(8, invoiceReport.GetPrice(order));
        }
        
-       //todo Acceptance test for invoice? //or createOrderWithInput? 
-       
-       
+       //todo create order taker class?
+
     }
 }

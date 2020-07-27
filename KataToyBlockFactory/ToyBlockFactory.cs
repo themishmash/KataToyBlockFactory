@@ -32,15 +32,24 @@ namespace KataToyBlockFactory
         {
             return _orders.Any(order => order.OrderNumber == orderNumber) ? OrderStatus.New : OrderStatus.None;
         }
-
-        public CuttingReport GetCuttingReport()
+        
+        public InvoiceReport GetInvoiceReport()
         {
-            var cuttingReport = new CuttingReport(_orders);
-            foreach (var shape in GetAvailableShapes())
+            var invoiceReport = new InvoiceReport();
+            foreach (var order in _orders)
             {
-                cuttingReport.GetShape(shape);
+                invoiceReport.GetPrice(order);
             }
-            return cuttingReport;
+            return invoiceReport;
+        }
+
+        public void GetSingleOrderCuttingReport()
+        {
+            foreach (var order in _orders)
+            {
+                CuttingReport.CreateCuttingReport(order);   
+            }
+            
         }
 
         public PaintingReport GetPaintingReport()
@@ -66,15 +75,6 @@ namespace KataToyBlockFactory
             return Enum.GetValues(typeof(Color)).Cast<Color>().ToList();
         }
 
-        public InvoiceReport GetInvoice()
-        {
-            var invoiceReport = new InvoiceReport();
-            foreach (var order in _orders)
-            {
-                invoiceReport.GetPrice(order);
-            }
-
-            return invoiceReport;
-        }
+       
     }
 }

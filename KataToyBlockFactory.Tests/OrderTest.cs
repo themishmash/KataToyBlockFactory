@@ -21,37 +21,17 @@ namespace KataToyBlockFactory.Tests
         }
 
         [Fact]
-        public void HasDueDate()
+        public void HasDueDateOfOneWeek()
         {
+            //show default due date to be one week
             var toyBlockFactory = new ToyBlockFactory();
             var order = toyBlockFactory.CreateOrder("James", "123 Smith St");
 
             Assert.Equal(DateTime.Today.AddDays(7), order.DueDate.Date);
         }
         
-
-        /*
-             * new block factory
-             * factory . create order( )   return new Order
-             * order . add block (shape, colour)
-             *
-             * assert order.Name ==
-             * Assert order.TotalBlocks = 39
-             *
-             *
-             * assert factory . TotalOrders == 2
-             *
-             *
-             *
-             * factory.getInvoice (order)
-             *
-             *
-             * factory . getpaitingreport()
-             *
-             * 
-             */
-
-        //create new toy block factory
-        //will need inputoutput interface
+        //todo set another test to show can't set date to past
+        
+        
     }
 }
