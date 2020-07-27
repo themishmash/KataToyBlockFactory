@@ -8,7 +8,7 @@ namespace KataToyBlockFactory.Tests
     {
 
         [Fact]
-        public void CanRetrieveOrder()
+        public void Can_Retrieve_Order()
         {
             var toyBlockFactory = new ToyBlockFactory();
             var order = toyBlockFactory.CreateOrder("James", "123 Smith Street, Fitzroy");
@@ -21,9 +21,8 @@ namespace KataToyBlockFactory.Tests
         }
 
         [Fact]
-        public void HasDueDateOfOneWeek()
+        public void Has_Default_Due_Date_One_Week()
         {
-            //show default due date to be one week
             var toyBlockFactory = new ToyBlockFactory();
             var order = toyBlockFactory.CreateOrder("James", "123 Smith St");
 
@@ -31,7 +30,24 @@ namespace KataToyBlockFactory.Tests
         }
         
         //todo set another test to show can't set date to past
-        
-        
+        [Fact]
+        public void Due_Date_Can_Only_Be_Set_To_Future_Date()
+        {
+            var toyBlockFactory = new ToyBlockFactory();
+            var order = toyBlockFactory.CreateOrder("James", "123 Smith Street");
+            order.DueDate = new DateTime(2018, 7, 24);
+
+         
+            // [Theory]
+            // [InlineData("-1,2,-3", "Negatives not allowed: -1, -3")]
+            // [InlineData("2,-3,4,5", "Negatives not allowed: -3")]
+            // public void AllowOnlyNonNegatives(string input, string expectedMessage)
+            // {
+            //     var exception = Assert.Throws<ArgumentException>(() => _calculator.Add(input));
+            //     Assert.Equal(expectedMessage, exception.Message);
+            // }
+            
+           Assert.Throws<ArgumentOutOfRangeException>(() => order.DueDate);
+        }
     }
 }

@@ -43,12 +43,16 @@ namespace KataToyBlockFactory
             return invoiceReport;
         }
 
-        public void GetSingleOrderCuttingReport()
+        public void GetSingleOrderCuttingReport(Order order)
         {
-            foreach (var order in _orders)
-            {
-                CuttingReport.CreateCuttingReport(order);   
-            }
+            
+                CuttingReport.CreateCuttingReport(order);
+
+        }
+        
+        public void GetTotalOrdersCuttingReport()
+        {
+            CuttingReport.CreateCuttingReportTotalOrders(_orders);
             
         }
 
@@ -75,6 +79,7 @@ namespace KataToyBlockFactory
             return Enum.GetValues(typeof(Color)).Cast<Color>().ToList();
         }
 
-       
+
+        
     }
 }

@@ -59,12 +59,32 @@ namespace KataToyBlockFactory.Tests
             order.AddBlock(Shape.Triangle, Color.Yellow);
             order.AddBlock(Shape.Square, Color.Yellow);
             order.AddBlock(Shape.Square, Color.Red);
-
-            toyBlockFactory.GetSingleOrderCuttingReport(); 
+        
+            toyBlockFactory.GetSingleOrderCuttingReport(order); 
             
-            Assert.Equal(2, CuttingReport.GetShape(Shape.Triangle));
-            Assert.Equal(4, CuttingReport.GetShape(Shape.Square));
-            Assert.Equal(1, CuttingReport.GetShape(Shape.Circle));
+            Assert.Equal(2, CuttingReport.GetShapeCount(Shape.Triangle));
+            Assert.Equal(4, CuttingReport.GetShapeCount(Shape.Square));
+            Assert.Equal(1, CuttingReport.GetShapeCount(Shape.Circle));
+        }
+        
+        [Fact]
+        public void Create_Cutting_Report_Will_Return_Number_Of_Shapes_For_Total_Orders()
+        {
+            var toyBlockFactory = new ToyBlockFactory();
+            var order = toyBlockFactory.CreateOrder("James", "123 Smith Street, Fitzroy");
+            order.AddBlock(Shape.Circle, Color.Blue);
+            order.AddBlock(Shape.Square, Color.Blue);
+            order.AddBlock(Shape.Square, Color.Red);
+            
+            var order2 = toyBlockFactory.CreateOrder("James", "123 Smith Street, Fitzroy");
+            order2.AddBlock(Shape.Triangle, Color.Blue);
+            order2.AddBlock(Shape.Triangle, Color.Blue);
+            order2.AddBlock(Shape.Triangle, Color.Yellow);
+            order2.AddBlock(Shape.Square, Color.Yellow);
+            order2.AddBlock(Shape.Square, Color.Red);
+        
+            toyBlockFactory.GetTotalOrdersCuttingReport();
+            Assert.Equal(4, CuttingReport.GetShapeCount(Shape.Square));
         }
         
         //todo create test for single order cutting report and painting report
@@ -92,8 +112,6 @@ namespace KataToyBlockFactory.Tests
             Assert.Equal(1, paintingReport.GetBlockShapeAndColor(Shape.Square, Color.Yellow));
         }
         
-       //due date test - in order class
-       //order status - toyblock factory
        
        //todo acceptance test for price/invoice stuff
        [Fact]
