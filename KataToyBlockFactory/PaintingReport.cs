@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -5,16 +6,26 @@ namespace KataToyBlockFactory
 {
     public class PaintingReport
     {
-        private readonly List<Order> _orders;
+        
+        private static List<Block> _blocks;
 
-        public PaintingReport(List<Order> orders)
+        private PaintingReport(List<Block> blocks)
         {
-            _orders = orders;
+            _blocks = blocks;
         }
 
-        public int GetBlockShapeAndColor(Shape shape, Color color)
+        public static void CreatePaintingReport(Order order)
         {
-            return _orders.Sum(order => order.CountShapeAndColor(shape, color));
+            _blocks = new List<Block>();
+            var blocks = order.GetBlocks();
+            _blocks = blocks.OrderBy(block => block.Shape).ThenBy(block => block.Color).ToList();
+            
+        }
+
+        public static int GetShapeColorCount(Shape shape, Color color)
+        {
+            return _blocks.Count(block => block.Shape == shape && block.Color == color);
         }
     }
+    
 }

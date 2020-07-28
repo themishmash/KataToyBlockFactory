@@ -37,17 +37,7 @@ namespace KataToyBlockFactory.Tests
             var order = toyBlockFactory.CreateOrder("James", "123 Smith Street");
             order.DueDate = new DateTime(2018, 7, 24);
 
-         
-            // [Theory]
-            // [InlineData("-1,2,-3", "Negatives not allowed: -1, -3")]
-            // [InlineData("2,-3,4,5", "Negatives not allowed: -3")]
-            // public void AllowOnlyNonNegatives(string input, string expectedMessage)
-            // {
-            //     var exception = Assert.Throws<ArgumentException>(() => _calculator.Add(input));
-            //     Assert.Equal(expectedMessage, exception.Message);
-            // }
-            
-           Assert.Throws<ArgumentOutOfRangeException>(() => order.DueDate);
+            Assert.Throws<ArgumentOutOfRangeException>(() => order.DueDate);
         }
     }
 }

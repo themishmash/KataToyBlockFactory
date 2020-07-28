@@ -43,30 +43,19 @@ namespace KataToyBlockFactory
             return invoiceReport;
         }
 
-        public void GetSingleOrderCuttingReport(Order order)
+        public void GetCuttingReport(Order order)
         {
-            
-                CuttingReport.CreateCuttingReport(order);
-
+            CuttingReport.CreateCuttingReport(order);
         }
         
-        public void GetTotalOrdersCuttingReport()
+        public void GetDailyCuttingReport()
         {
             CuttingReport.CreateCuttingReportTotalOrders(_orders);
-            
         }
-
-        public PaintingReport GetPaintingReport()
+        
+        public void GetPaintingReport(Order order)
         {
-            var paintingReport = new PaintingReport(_orders);
-            foreach (var shape in GetAvailableShapes())
-            {
-                foreach (var color in GetAvailableColors())
-                {
-                    paintingReport.GetBlockShapeAndColor(shape, color);
-                }
-            }
-            return paintingReport;
+            PaintingReport.CreatePaintingReport(order);
         }
 
         private static IEnumerable<Shape> GetAvailableShapes()
@@ -78,6 +67,20 @@ namespace KataToyBlockFactory
         {
             return Enum.GetValues(typeof(Color)).Cast<Color>().ToList();
         }
+        
+        // public PaintingReport GetPaintingReport()
+        // {
+        //     var paintingReport = new PaintingReport(_orders);
+        //     foreach (var shape in GetAvailableShapes())
+        //     {
+        //         foreach (var color in GetAvailableColors())
+        //         {
+        //             paintingReport.GetBlockShapeAndColor(shape, color);
+        //         }
+        //     }
+        //     return paintingReport;
+        // }
+
 
 
         
