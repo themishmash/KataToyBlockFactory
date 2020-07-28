@@ -43,7 +43,7 @@ namespace KataToyBlockFactory
             return invoiceReport;
         }
 
-        public CuttingReport GetCuttingReport(int orderNumber) 
+        public CuttingReport GetCuttingReport(int orderNumber) //todo why is this void???
         {
             var order = GetOrder(orderNumber);
             return CuttingReport.CreateCuttingReport(order);

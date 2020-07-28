@@ -6,25 +6,7 @@ namespace KataToyBlockFactory.Tests
     //These tests are intended a happy path flow through the entire application
     public class AcceptanceTests
     {
-        [Fact]
-        public void GetNumberOfBlocksToBePainted()
-        {
-            // var order = new Order("James", "123 Smith Street, Fitzroy");
-            // var paintingReport = new PaintingReport();
-            // var cuttingReport = new CuttingReport();
-            // var priceCalculator = new PriceCalculator();
-            // var toyBlockFactory = new ToyBlockFactory(order, paintingReport, cuttingReport, priceCalculator);
-            //
-            // Assert.Equal(1, toyBlockFactory.GetNumberOfBlocksToBePainted());
-        }
 
-        [Fact]
-        public void GetTotalOrders()
-        {
-            // var toyBlockFactory = new KataToyBlockFactory.ToyBlockFactory();
-            // Assert.Equal(1, toyBlockFactory.GetTotalOrders());
-        }
-        
         [Fact]
         public void Placing_An_Order_Will_Create_New_Order()
         {

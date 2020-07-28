@@ -4,7 +4,7 @@ using Xunit;
 
 namespace KataToyBlockFactory.Tests
 {
-    public class OrderTest
+    public class OrderTests
     {
 
         [Fact]
@@ -35,9 +35,9 @@ namespace KataToyBlockFactory.Tests
         {
             var toyBlockFactory = new ToyBlockFactory();
             var order = toyBlockFactory.CreateOrder("James", "123 Smith Street");
-            order.DueDate = new DateTime(2018, 7, 24);
 
-            Assert.Throws<ArgumentOutOfRangeException>(() => order.DueDate);
+            Assert.Throws<ArgumentOutOfRangeException>(() => order.DueDate = new DateTime(2018, 7, 24));
+            
         }
     }
 }

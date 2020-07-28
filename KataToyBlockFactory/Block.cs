@@ -31,7 +31,5 @@ namespace KataToyBlockFactory
             Shape = shape;
             Color = color;
         }
-
-     
     }
 }

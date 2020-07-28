@@ -17,13 +17,17 @@ namespace KataToyBlockFactory
             {
                 if (value < DateTime.Today)
                     throw new ArgumentOutOfRangeException(nameof(DueDate), "Due date must be in future");
-                _dueDate = value;
+                else
+                {
+                    _dueDate = value.AddDays(7);
+                }
+                
             }
         }
         
         public int OrderNumber { get; set; }
-        
-        private DateTime _dueDate = DateTime.Today.AddDays(7);
+
+        private DateTime _dueDate;
         
         private readonly IList <Block>_blocks = new List<Block>();
         
