@@ -60,7 +60,7 @@ namespace KataToyBlockFactory.Tests
             order.AddBlock(Shape.Square, Color.Yellow);
             order.AddBlock(Shape.Square, Color.Red);
         
-            toyBlockFactory.GetCuttingReport(order); 
+            toyBlockFactory.GetCuttingReport(1); 
             
             Assert.Equal(2, CuttingReport.GetShapeCount(Shape.Triangle));
             Assert.Equal(4, CuttingReport.GetShapeCount(Shape.Square));
@@ -95,7 +95,6 @@ namespace KataToyBlockFactory.Tests
             var toyBlockFactory = new ToyBlockFactory();
             var order = toyBlockFactory.CreateOrder("James", "123 Smith Street, Fitzroy");
             order.AddBlock(Shape.Circle, Color.Blue);
-            order.AddBlock(Shape.Square, Color.Blue);
             order.AddBlock(Shape.Square, Color.Red);
             order.AddBlock(Shape.Triangle, Color.Blue);
             order.AddBlock(Shape.Triangle, Color.Yellow);
@@ -106,8 +105,25 @@ namespace KataToyBlockFactory.Tests
             
             Assert.Equal(1, PaintingReport.GetShapeColorCount(Shape.Triangle, Color.Yellow));
             Assert.Equal(2, PaintingReport.GetShapeColorCount(Shape.Square, Color.Red));
-            Assert.Equal(1, PaintingReport.GetShapeColorCount(Shape.Square, Color.Blue));
+           
             //Assert.Equal(1, CuttingReport.GetShapeCount(Shape.Circle));
+        }
+        
+        //todo duplicate the above test (for unit test) 
+        
+        [Fact]
+        public void Create_Painting_Report_Will_Return_Number()
+        {
+            //Arrange
+            var toyBlockFactory = new ToyBlockFactory();
+            var order = toyBlockFactory.CreateOrder("James", "123 Smith Street, Fitzroy");
+            order.AddBlock(Shape.Circle, Color.Blue);
+            order.AddBlock(Shape.Circle, Color.Blue);
+            
+            toyBlockFactory.GetPaintingReport(order);
+            
+            Assert.Equal(2, PaintingReport.GetShapeColorCount(Shape.Circle, Color.Blue));
+           
         }
 
         [Fact]

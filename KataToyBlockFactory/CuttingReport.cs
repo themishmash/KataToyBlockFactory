@@ -13,18 +13,17 @@ namespace KataToyBlockFactory
             _shapesCount = shapesCount;
         }
 
-        public static void CreateCuttingReport(Order order)
+        internal static CuttingReport CreateCuttingReport(Order order) //make this internal as factory method. wont' test this. need to use toyblock fac for unit test. make painting use public and cutting use internal. 
         {
-            //todo if dont' initialize here - fails in tests. 
             _shapesCount = new Dictionary<Shape, int>();
             foreach (var shape in GetAvailableShapes())
             {
                 _shapesCount.Add(shape, order.CountShape(shape));
             }
-            if (_shapesCount != null) new CuttingReport(_shapesCount);
+            return new CuttingReport(_shapesCount);
         }
 
-        public static void CreateCuttingReportTotalOrders(IEnumerable<Order> orders)
+        internal static void CreateCuttingReportTotalOrders(IEnumerable<Order> orders)
         {
             _shapesCount = new Dictionary<Shape, int>();
             foreach (var shape in GetAvailableShapes())

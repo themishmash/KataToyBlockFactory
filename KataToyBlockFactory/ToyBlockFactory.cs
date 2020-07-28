@@ -43,9 +43,10 @@ namespace KataToyBlockFactory
             return invoiceReport;
         }
 
-        public void GetCuttingReport(Order order)
+        public CuttingReport GetCuttingReport(int orderNumber) 
         {
-            CuttingReport.CreateCuttingReport(order);
+            var order = GetOrder(orderNumber);
+            return CuttingReport.CreateCuttingReport(order);
         }
         
         public void GetDailyCuttingReport()
