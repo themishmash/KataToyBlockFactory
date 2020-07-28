@@ -54,9 +54,10 @@ namespace KataToyBlockFactory
             CuttingReport.CreateCuttingReportTotalOrders(_orders);
         }
         
-        public void GetPaintingReport(Order order)
+        public PaintingReport GetPaintingReport(int orderNumber)
         {
-            PaintingReport.CreatePaintingReport(order);
+            var order = GetOrder(orderNumber);
+            return PaintingReport.CreatePaintingReport(order);
         }
 
         private static IEnumerable<Shape> GetAvailableShapes()

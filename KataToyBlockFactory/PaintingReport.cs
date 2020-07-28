@@ -7,24 +7,38 @@ namespace KataToyBlockFactory
     public class PaintingReport
     {
         
-        private static List<Block> _blocks;
+        private static Dictionary<Block, int> _blocksCount;
 
-        private PaintingReport(List<Block> blocks)
+        private PaintingReport(Dictionary<Block, int> blocksCount)
         {
-            _blocks = blocks;
+            _blocksCount = blocksCount;
         }
 
-        public static void CreatePaintingReport(Order order)
+        public static PaintingReport CreatePaintingReport(Order order)
         {
-            _blocks = new List<Block>();
-            var blocks = order.GetBlocks();
-            _blocks = blocks.OrderBy(block => block.Shape).ThenBy(block => block.Color).ToList();
-            
+            _blocksCount = new Dictionary<Block, int>();
+            foreach (var shape in GetAvailableShapes())
+            foreach (var color in GetAvailableColors())
+            {
+                _blocksCount.Add(new Block(shape, color), order.CountShapeAndColor(shape, color));
+            }
+            return new PaintingReport(_blocksCount);
         }
 
         public static int GetShapeColorCount(Shape shape, Color color)
         {
-            return _blocks.Count(block => block.Shape == shape && block.Color == color);
+            var foundKey = _blocksCount.Keys.FirstOrDefault(x => x.Shape == shape && x.Color == color);
+            return _blocksCount.GetValueOrDefault(foundKey, 0);
+        }
+        
+        private static IEnumerable<Shape> GetAvailableShapes()
+        {
+            return Enum.GetValues(typeof(Shape)).Cast<Shape>().ToList();
+        }
+        
+        private static IEnumerable<Color> GetAvailableColors()
+        {
+            return Enum.GetValues(typeof(Color)).Cast<Color>().ToList();
         }
     }
     
