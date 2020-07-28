@@ -23,14 +23,14 @@ namespace KataToyBlockFactory
             return new CuttingReport(_shapesCount);
         }
 
-        internal static void CreateCuttingReportTotalOrders(IEnumerable<Order> orders)
+        internal static CuttingReport CreateCuttingReportTotalOrders(IEnumerable<Order> orders)
         {
             _shapesCount = new Dictionary<Shape, int>();
             foreach (var shape in GetAvailableShapes())
             {
                 _shapesCount.Add(shape, GetSumOfShapes(shape, orders));
             }
-            if (_shapesCount != null) new CuttingReport(_shapesCount);
+            return new CuttingReport(_shapesCount);
         }
         
         public static int GetShapeCount(Shape shape)
