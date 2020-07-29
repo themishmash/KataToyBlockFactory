@@ -19,13 +19,13 @@ namespace KataToyBlockFactory.Tests
             order2.AddBlock(Shape.Circle, Color.Blue);
             order2.AddBlock(Shape.Circle, Color.Blue);
 
-            toyBlockFactory.GetCuttingReport(1);
-            Assert.Equal(1, CuttingReport.GetShapeCount(Shape.Circle)); 
-            Assert.Equal(2, CuttingReport.GetShapeCount(Shape.Square));
-            Assert.Equal(2, CuttingReport.GetShapeCount(Shape.Triangle));
+            var cuttingReport = toyBlockFactory.GetCuttingReport(1);
+            Assert.Equal(1, cuttingReport.GetShapeCount(Shape.Circle)); 
+            Assert.Equal(2, cuttingReport.GetShapeCount(Shape.Square));
+            Assert.Equal(2, cuttingReport.GetShapeCount(Shape.Triangle));
 
-            toyBlockFactory.GetCuttingReport(2);
-            Assert.Equal(2, CuttingReport.GetShapeCount(Shape.Circle));
+            var cuttingReport1 = toyBlockFactory.GetCuttingReport(2);
+            Assert.Equal(2, cuttingReport1.GetShapeCount(Shape.Circle));
         }
 
         [Fact]
@@ -43,8 +43,8 @@ namespace KataToyBlockFactory.Tests
             order2.AddBlock(Shape.Circle, Color.Blue);
             order2.AddBlock(Shape.Circle, Color.Blue);
 
-            toyBlockFactory.GetDailyCuttingReport();
-            Assert.Equal(3, CuttingReport.GetShapeCount(Shape.Circle));
+            var cuttingReport = toyBlockFactory.GetDailyCuttingReport();
+            Assert.Equal(3, cuttingReport.GetShapeCount(Shape.Circle));
         }
 
         [Fact]
@@ -52,9 +52,9 @@ namespace KataToyBlockFactory.Tests
         {
             var toyBlockFactory = new ToyBlockFactory();
             toyBlockFactory.CreateOrder("James", "123 Smith Street, Fitzroy");
-            toyBlockFactory.GetCuttingReport(1);
+            var cuttingReport = toyBlockFactory.GetCuttingReport(1);
             
-            Assert.Equal(0, CuttingReport.GetShapeCount(Shape.Circle));
+            Assert.Equal(0, cuttingReport.GetShapeCount(Shape.Circle));
         }
     }
 }

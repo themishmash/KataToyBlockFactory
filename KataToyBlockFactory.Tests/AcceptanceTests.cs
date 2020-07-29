@@ -42,11 +42,11 @@ namespace KataToyBlockFactory.Tests
             order.AddBlock(Shape.Square, Color.Yellow);
             order.AddBlock(Shape.Square, Color.Red);
         
-            toyBlockFactory.GetCuttingReport(1); 
+            var cuttingReport = toyBlockFactory.GetCuttingReport(1); 
             
-            Assert.Equal(2, CuttingReport.GetShapeCount(Shape.Triangle));
-            Assert.Equal(4, CuttingReport.GetShapeCount(Shape.Square));
-            Assert.Equal(1, CuttingReport.GetShapeCount(Shape.Circle));
+            Assert.Equal(2, cuttingReport.GetShapeCount(Shape.Triangle));
+            Assert.Equal(4, cuttingReport.GetShapeCount(Shape.Square));
+            Assert.Equal(1, cuttingReport.GetShapeCount(Shape.Circle));
         }
         
         [Fact]
@@ -65,8 +65,8 @@ namespace KataToyBlockFactory.Tests
             order2.AddBlock(Shape.Square, Color.Yellow);
             order2.AddBlock(Shape.Square, Color.Red);
         
-            toyBlockFactory.GetDailyCuttingReport();
-            Assert.Equal(4, CuttingReport.GetShapeCount(Shape.Square));
+            var cuttingReport = toyBlockFactory.GetDailyCuttingReport();
+            Assert.Equal(4, cuttingReport.GetShapeCount(Shape.Square));
         }
         
         [Fact]
@@ -82,16 +82,12 @@ namespace KataToyBlockFactory.Tests
             order.AddBlock(Shape.Square, Color.Yellow);
             order.AddBlock(Shape.Square, Color.Red);
             
-            toyBlockFactory.GetPaintingReport(1);
+            var paintingReport = toyBlockFactory.GetPaintingReport(1);
             
-            Assert.Equal(1, PaintingReport.GetShapeColorCount(Shape.Triangle, Color.Yellow));
-            Assert.Equal(2, PaintingReport.GetShapeColorCount(Shape.Square, Color.Red));
+            Assert.Equal(1, paintingReport.GetShapeColorCount(Shape.Triangle, Color.Yellow));
+            Assert.Equal(2, paintingReport.GetShapeColorCount(Shape.Square, Color.Red));
         }
         
-        //todo duplicate the above test (for unit test) 
-        
-        
-
         [Fact]
         public void Create_Painting_Report_Will_Return_Number_For_Daily_Orders()
         {
@@ -108,10 +104,10 @@ namespace KataToyBlockFactory.Tests
             order2.AddBlock(Shape.Square, Color.Yellow);
             order2.AddBlock(Shape.Square, Color.Red);
 
-            toyBlockFactory.GetDailyPaintingReport();
+            var paintingReport = toyBlockFactory.GetDailyPaintingReport();
             
-            Assert.Equal(2, PaintingReport.GetShapeColorCount(Shape.Square, Color.Red));
-            Assert.Equal(2, PaintingReport.GetShapeColorCount(Shape.Triangle, Color.Blue));
+            Assert.Equal(2, paintingReport.GetShapeColorCount(Shape.Square, Color.Red));
+            Assert.Equal(2, paintingReport.GetShapeColorCount(Shape.Triangle, Color.Blue));
         }
         
        //todo acceptance test for price/invoice stuff
@@ -129,6 +125,6 @@ namespace KataToyBlockFactory.Tests
            
            Assert.Equal(8, invoiceReport.GetPrice(order));
        }
-
+       
     }
 }

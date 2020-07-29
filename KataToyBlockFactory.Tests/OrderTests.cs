@@ -12,7 +12,6 @@ namespace KataToyBlockFactory.Tests
         {
             var toyBlockFactory = new ToyBlockFactory();
             var order = toyBlockFactory.CreateOrder("James", "123 Smith Street, Fitzroy");
-            order.DueDate = order.DueDate.AddDays(7);
             order.AddBlock(Shape.Circle, Color.Blue);
             order.AddBlock(Shape.Triangle, Color.Yellow);
             order.AddBlock(Shape.Square, Color.Red);

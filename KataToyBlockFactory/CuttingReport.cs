@@ -6,34 +6,28 @@ namespace KataToyBlockFactory
 {
     public class CuttingReport
     {
-        private static Dictionary<Shape, int> _shapesCount;
+       private readonly Dictionary<Shape, int> _shapesCount = new Dictionary<Shape, int>();
 
-        private CuttingReport(Dictionary<Shape, int> shapesCount)
+        private CuttingReport(IEnumerable<Order> orders, IEnumerable<Shape> shapes)
         {
-            _shapesCount = shapesCount;
-        }
-
-        internal static CuttingReport CreateCuttingReport(Order order) 
-        {
-            _shapesCount = new Dictionary<Shape, int>();
-            foreach (var shape in GetAvailableShapes())
-            {
-                _shapesCount.Add(shape, order.CountShape(shape));
-            }
-            return new CuttingReport(_shapesCount);
-        }
-
-        internal static CuttingReport CreateCuttingReportTotalOrders(IEnumerable<Order> orders)
-        {
-            _shapesCount = new Dictionary<Shape, int>();
-            foreach (var shape in GetAvailableShapes())
+            foreach (var shape in shapes)
             {
                 _shapesCount.Add(shape, GetSumOfShapes(shape, orders));
             }
-            return new CuttingReport(_shapesCount);
+        }
+
+        internal static CuttingReport CreateCuttingReport(Order order, IEnumerable<Shape> shapes) 
+        {
+            return new CuttingReport(new List<Order>{order}, shapes);
+        }
+
+        internal static CuttingReport CreateCuttingReportTotalOrders(IEnumerable<Order> orders, IEnumerable<Shape> 
+        shapes)
+        {
+            return new CuttingReport(orders, shapes);
         }
         
-        public static int GetShapeCount(Shape shape)
+        public int GetShapeCount(Shape shape)
         {
             return _shapesCount.GetValueOrDefault(shape, 0);
         }
@@ -43,10 +37,6 @@ namespace KataToyBlockFactory
             return orders.Sum(order => order.CountShape(shape));
         }
 
-        private static IEnumerable<Shape> GetAvailableShapes()
-        {
-            return Enum.GetValues(typeof(Shape)).Cast<Shape>().ToList();
-        }
-
+        
     }
 }

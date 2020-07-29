@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -6,50 +5,35 @@ namespace KataToyBlockFactory
 {
     public class PaintingReport
     {
-        
-        private static Dictionary<Block, int> _blocksCount;
+        private readonly Dictionary<Block, int> _blocksCount = new Dictionary<Block, int>();
 
-        private PaintingReport(Dictionary<Block, int> blocksCount)
+        private PaintingReport(IEnumerable<Order> orders, IEnumerable<Shape> shapes, IEnumerable<Color> colors)
         {
-            _blocksCount = blocksCount;
+            foreach (var shape in shapes)
+            foreach (var color in colors)
+            {
+                {
+                    _blocksCount.Add(new Block(shape, color), GetSumOfShapeColors(shape, color, orders));
+                }
+            }
         }
 
-        public static PaintingReport CreatePaintingReport(Order order)
+        internal static PaintingReport CreatePaintingReport(Order order, IEnumerable<Shape> shapes, IEnumerable<Color> 
+        colors)
         {
-            _blocksCount = new Dictionary<Block, int>();
-            foreach (var shape in GetAvailableShapes())
-            foreach (var color in GetAvailableColors())
-            {
-                _blocksCount.Add(new Block(shape, color), order.CountShapeAndColor(shape, color));
-            }
-            return new PaintingReport(_blocksCount);
+            return new PaintingReport(new List<Order>{order}, shapes, colors);
         }
         
-        public static PaintingReport CreatePaintingReportTotalOrders(IEnumerable<Order> orders)
+        internal static PaintingReport CreatePaintingReportTotalOrders(IEnumerable<Order> orders, IEnumerable<Shape> 
+        shapes, IEnumerable<Color> colors)
         {
-            _blocksCount = new Dictionary<Block, int>();
-            foreach (var shape in GetAvailableShapes())
-            foreach (var color in GetAvailableColors())
-            {
-                _blocksCount.Add(new Block(shape, color), GetSumOfShapeColors(shape, color, orders));
-            }
-            return new PaintingReport(_blocksCount);
+            return new PaintingReport(orders, shapes, colors);
         }
         
-        public static int GetShapeColorCount(Shape shape, Color color)
+        public int GetShapeColorCount(Shape shape, Color color)
         {
             var foundKey = _blocksCount.Keys.FirstOrDefault(x => x.Shape == shape && x.Color == color);
             return _blocksCount.GetValueOrDefault(foundKey, 0);
-        }
-        
-        private static IEnumerable<Shape> GetAvailableShapes()
-        {
-            return Enum.GetValues(typeof(Shape)).Cast<Shape>().ToList();
-        }
-        
-        private static IEnumerable<Color> GetAvailableColors()
-        {
-            return Enum.GetValues(typeof(Color)).Cast<Color>().ToList();
         }
 
         private static int GetSumOfShapeColors(Shape shape, Color color, IEnumerable<Order> orders)
