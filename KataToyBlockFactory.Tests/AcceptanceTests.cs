@@ -67,7 +67,6 @@ namespace KataToyBlockFactory.Tests
         
             toyBlockFactory.GetDailyCuttingReport();
             Assert.Equal(4, CuttingReport.GetShapeCount(Shape.Square));
-            
         }
         
         [Fact]
@@ -91,22 +90,10 @@ namespace KataToyBlockFactory.Tests
         
         //todo duplicate the above test (for unit test) 
         
-        [Fact]
-        public void Create_Painting_Report_Will_Return_Number_Of_Blocks()
-        {
-            //Arrange
-            var toyBlockFactory = new ToyBlockFactory();
-            var order = toyBlockFactory.CreateOrder("James", "123 Smith Street, Fitzroy");
-            order.AddBlock(Shape.Circle, Color.Blue);
-            order.AddBlock(Shape.Circle, Color.Blue);
-            
-            toyBlockFactory.GetPaintingReport(1);
-            
-            Assert.Equal(2, PaintingReport.GetShapeColorCount(Shape.Circle, Color.Blue));
-        }
+        
 
         [Fact]
-        public void Create_Painting_Report_Will_Return_Number_Of_Shapes_And_Number_Of_Colors()
+        public void Create_Painting_Report_Will_Return_Number_For_Daily_Orders()
         {
             var toyBlockFactory = new ToyBlockFactory();
             var order = toyBlockFactory.CreateOrder("James", "123 Smith Street, Fitzroy");
@@ -125,10 +112,8 @@ namespace KataToyBlockFactory.Tests
             
             Assert.Equal(2, PaintingReport.GetShapeColorCount(Shape.Square, Color.Red));
             Assert.Equal(2, PaintingReport.GetShapeColorCount(Shape.Triangle, Color.Blue));
-            // Assert.Equal(1, paintingReport.GetBlockShapeAndColor(Shape.Square, Color.Yellow));
         }
         
-       
        //todo acceptance test for price/invoice stuff
        [Fact]
        public void Create_Invoice_Report_Will_Return_Price_Of_Order()

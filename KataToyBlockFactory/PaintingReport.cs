@@ -24,14 +24,24 @@ namespace KataToyBlockFactory
             }
             return new PaintingReport(_blocksCount);
         }
-
+        
+        public static PaintingReport CreatePaintingReportTotalOrders(IEnumerable<Order> orders)
+        {
+            _blocksCount = new Dictionary<Block, int>();
+            foreach (var shape in GetAvailableShapes())
+            foreach (var color in GetAvailableColors())
+            {
+                _blocksCount.Add(new Block(shape, color), GetSumOfShapeColors(shape, color, orders));
+            }
+            return new PaintingReport(_blocksCount);
+        }
+        
         public static int GetShapeColorCount(Shape shape, Color color)
         {
             var foundKey = _blocksCount.Keys.FirstOrDefault(x => x.Shape == shape && x.Color == color);
             return _blocksCount.GetValueOrDefault(foundKey, 0);
         }
         
-        //todo should this be in a different class? 
         private static IEnumerable<Shape> GetAvailableShapes()
         {
             return Enum.GetValues(typeof(Shape)).Cast<Shape>().ToList();
@@ -42,21 +52,12 @@ namespace KataToyBlockFactory
             return Enum.GetValues(typeof(Color)).Cast<Color>().ToList();
         }
 
-        public static PaintingReport CreatePaintingReportTotalOrders(List<Order> orders)
-        {
-            _blocksCount = new Dictionary<Block, int>();
-            foreach (var shape in GetAvailableShapes())
-            foreach (var color in GetAvailableColors())
-            {
-                _blocksCount.Add(new Block(shape, color), GetSumOfShapeColors(shape, color, orders));
-            }
-            return new PaintingReport(_blocksCount);
-        }
-
         private static int GetSumOfShapeColors(Shape shape, Color color, IEnumerable<Order> orders)
         {
             return orders.Sum(order => order.CountShapeAndColor(shape, color));
         }
+
+        
     }
     
 }

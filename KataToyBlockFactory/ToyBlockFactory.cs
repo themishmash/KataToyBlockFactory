@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -32,16 +31,6 @@ namespace KataToyBlockFactory
         {
             return _orders.Any(order => order.OrderNumber == orderNumber) ? OrderStatus.New : OrderStatus.None;
         }
-        
-        public InvoiceReport GetInvoiceReport()
-        {
-            var invoiceReport = new InvoiceReport();
-            foreach (var order in _orders)
-            {
-                invoiceReport.GetPrice(order);
-            }
-            return invoiceReport;
-        }
 
         public CuttingReport GetCuttingReport(int orderNumber) //todo why is this void???
         {
@@ -65,11 +54,15 @@ namespace KataToyBlockFactory
             return PaintingReport.CreatePaintingReportTotalOrders(_orders);
         }
         
-        
-        
+        public InvoiceReport GetInvoiceReport()
+        {
+            var invoiceReport = new InvoiceReport();
+            foreach (var order in _orders)
+            {
+                invoiceReport.GetPrice(order);
+            }
+            return invoiceReport;
+        }
 
-
-
-        
     }
 }
