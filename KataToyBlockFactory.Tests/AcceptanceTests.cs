@@ -122,7 +122,7 @@ namespace KataToyBlockFactory.Tests
            
            var invoiceReport = toyBlockFactory.GetInvoiceReport(1);
            
-           Assert.Equal(8, invoiceReport.GetPrice());
+           Assert.Equal(8, invoiceReport.GetCostTotal());
        }
        
     }

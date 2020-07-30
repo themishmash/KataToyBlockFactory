@@ -1,47 +1,56 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
+
 
 namespace KataToyBlockFactory
 {
     public static class PriceCalculator
     {
+        private static readonly Dictionary<Shape, int> _shapePrices = new Dictionary<Shape, int>
+        {
+            {Shape.Square, 1},
+            {Shape.Triangle, 2},
+            {Shape.Circle, 3}
+        };
+        
+        private static readonly Dictionary<Color, int> _colorPrices = new Dictionary<Color, int>()
+        {
+            {Color.Red, 1}
+        };
+
         public static int GetShapePrice(Dictionary<Shape, int> shapesCount)
         {
             var totalShapePrice = 0;
             foreach (var (key, value) in shapesCount)
             {
-                switch (key)
+                foreach (var (shape, price) in _shapePrices)
                 {
-                    case Shape.Square:
-                        totalShapePrice += 1 * value;
-                        break;
-                    case Shape.Triangle:
-                        totalShapePrice += 2 * value;
-                        break;
-                    case Shape.Circle:
-                        totalShapePrice += 3 * value;
-                        break;
-                    default:
-                        throw new ArgumentOutOfRangeException();
+                    if (key == shape)
+                    {
+                        totalShapePrice += value * price;
+                    }
                 }
             }
             return totalShapePrice;
         }
         
-
         public static int GetColorPrice(Dictionary<Color, int> colorsCount)
         {
             var totalColorPrice = 0;
-            foreach (var colorCount in colorsCount)
+            foreach (var (key, value) in colorsCount)
             {
-                if (colorCount.Key == Color.Red)
+
+                foreach (var (color, price) in _colorPrices)
                 {
-                    totalColorPrice += 1 * colorCount.Value;
+                    if (key == color)
+                    {
+                        totalColorPrice += value * price;
+                    }
                 }
             }
             return totalColorPrice;
         }
     }
-
-   
+    
 }

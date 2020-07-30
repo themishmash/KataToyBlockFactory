@@ -60,7 +60,6 @@ namespace KataToyBlockFactory
             var order = GetOrder(orderNumber);
             return InvoiceReport.CreateInvoiceReport(order, GetAvailableShapes(), GetAvailableColors());
         }
-        
 
         private static IEnumerable<Shape> GetAvailableShapes()
         {

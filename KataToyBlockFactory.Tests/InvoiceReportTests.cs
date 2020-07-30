@@ -2,7 +2,7 @@ using Xunit;
 
 namespace KataToyBlockFactory.Tests
 {
-    public class InvoiceReport
+    public class InvoiceReportTests
     {
         [Fact]
         public void Return_Total_Price_Based_On_Order_Number()
@@ -15,7 +15,7 @@ namespace KataToyBlockFactory.Tests
             
             var invoiceReport = toyBlockFactory.GetInvoiceReport(1);
             
-            Assert.Equal(7, invoiceReport.GetPrice());
+            Assert.Equal(7, invoiceReport.GetCostTotal());
         }
         
         
@@ -28,7 +28,7 @@ namespace KataToyBlockFactory.Tests
 
             var invoiceReport = toyBlockFactory.GetInvoiceReport(1);
 
-            Assert.Equal(0, invoiceReport.GetPrice());
+            Assert.Equal(0, invoiceReport.GetCostTotal());
         }
     }
 }

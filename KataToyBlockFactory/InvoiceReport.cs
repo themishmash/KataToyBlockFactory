@@ -26,11 +26,12 @@ namespace KataToyBlockFactory
             return new InvoiceReport(new List<Order>{order}, shapes, colors );
         }
 
-        public int GetPrice()
+        public int GetCostTotal()
         {
             return PriceCalculator.GetShapePrice(_shapesCount) + PriceCalculator.GetColorPrice(_colorsCount);
         }
 
+        //todo this one below is repeated from cutting report...
         private static int GetSumOfShapes(Shape shape, IEnumerable<Order> orders)
         {
             return orders.Sum(order => order.CountShape(shape));
