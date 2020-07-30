@@ -31,13 +31,12 @@ namespace KataToyBlockFactory.Tests
         [Fact]
         public void Daily_Total()
         {
-
             var cuttingReportForDailyTotal = _toyBlockFactory.GetDailyCuttingReport();
             Assert.Equal(3, cuttingReportForDailyTotal.GetShapeCount(Shape.Circle));
         }
 
         [Fact]
-        public void Default_Count_Set_To_Zero()
+        public void No_Shapes_Cut()
         {
             var cuttingReport = _toyBlockFactory.GetCuttingReport(1);
             

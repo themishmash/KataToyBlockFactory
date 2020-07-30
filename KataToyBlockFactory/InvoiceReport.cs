@@ -7,6 +7,7 @@ namespace KataToyBlockFactory
     {
         private readonly Dictionary<Shape, int> _shapesCount = new Dictionary<Shape, int>();
         private readonly Dictionary<Color, int> _colorsCount = new Dictionary<Color, int>();
+        
         private InvoiceReport(IEnumerable<Order> orders, IEnumerable<Shape> shapes, IEnumerable<Color> colors)
         {
             foreach (var shape in shapes)
