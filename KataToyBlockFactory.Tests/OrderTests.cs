@@ -24,8 +24,9 @@ namespace KataToyBlockFactory.Tests
         {
             var toyBlockFactory = new ToyBlockFactory();
             var order = toyBlockFactory.CreateOrder("James", "123 Smith St");
+            //order.DueDate = DateTime.Today;
 
-            Assert.Equal(DateTime.Today.AddDays(7), order.DueDate.Date);
+            Assert.Equal(DateTime.Today.AddDays(7), order.DueDate);
         }
         
         //todo set another test to show can't set date to past

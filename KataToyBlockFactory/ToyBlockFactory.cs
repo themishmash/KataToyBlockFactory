@@ -54,16 +54,13 @@ namespace KataToyBlockFactory
         {
             return PaintingReport.CreatePaintingReportTotalOrders(_orders, GetAvailableShapes(), GetAvailableColors());
         }
-        
-        public InvoiceReport GetInvoiceReport()
+
+        public InvoiceReport GetInvoiceReport(int orderNumber)
         {
-            var invoiceReport = new InvoiceReport();
-            foreach (var order in _orders)
-            {
-                invoiceReport.GetPrice(order);
-            }
-            return invoiceReport;
+            var order = GetOrder(orderNumber);
+            return InvoiceReport.CreateInvoiceReport(order, GetAvailableShapes(), GetAvailableColors());
         }
+        
 
         private static IEnumerable<Shape> GetAvailableShapes()
         {

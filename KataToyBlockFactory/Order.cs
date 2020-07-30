@@ -10,6 +10,7 @@ namespace KataToyBlockFactory
         public OrderStatus OrderStatus { get; set; }
         public string Address { get; }
         
+        //todo take logic in the set to put outside. 
         public DateTime DueDate
         {
             get => _dueDate;
@@ -19,9 +20,8 @@ namespace KataToyBlockFactory
                     throw new ArgumentOutOfRangeException(nameof(DueDate), "Due date must be in future");
                 else
                 {
-                    _dueDate = value.AddDays(7);
+                    _dueDate = value;
                 }
-                
             }
         }
         
@@ -35,6 +35,7 @@ namespace KataToyBlockFactory
         {
             Name = name;
             Address = address;
+            DueDate = DateTime.Today.AddDays(7);
         }
         
         public void AddBlock(Shape shape, Color color)
@@ -61,7 +62,6 @@ namespace KataToyBlockFactory
         {
             return _blocks;
         }
-    
         
     }
 }

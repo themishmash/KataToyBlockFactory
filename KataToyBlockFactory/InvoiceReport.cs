@@ -1,23 +1,44 @@
-using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace KataToyBlockFactory
 {
     public class InvoiceReport
     {
-        private readonly PriceCalculator _priceCalculator;
-        public InvoiceReport()
+        private readonly Dictionary<Shape, int> _shapesCount = new Dictionary<Shape, int>();
+        private readonly Dictionary<Color, int> _colorsCount = new Dictionary<Color, int>();
+        private InvoiceReport(IEnumerable<Order> orders, IEnumerable<Shape> shapes, IEnumerable<Color> colors)
         {
-            _priceCalculator = new PriceCalculator();
-        }
-        public int GetPrice(Order order)
-        {
-            var total = 0;
-            foreach (var block in order.GetBlocks())
+            foreach (var shape in shapes)
             {
-                total+=_priceCalculator.GetCost(block);
+               _shapesCount.Add(shape, GetSumOfShapes(shape, orders));
             }
-            return total;
+
+            foreach (var color in colors)
+            {
+                _colorsCount.Add(color, GetSumOfColors(color, orders));
+            }
+        }
+
+        internal static InvoiceReport CreateInvoiceReport(Order order, IEnumerable<Shape> shapes, IEnumerable<Color>
+            colors)
+        {
+            return new InvoiceReport(new List<Order>{order}, shapes, colors );
+        }
+
+        public int GetPrice()
+        {
+            return PriceCalculator.GetShapePrice(_shapesCount) + PriceCalculator.GetColorPrice(_colorsCount);
+        }
+
+        private static int GetSumOfShapes(Shape shape, IEnumerable<Order> orders)
+        {
+            return orders.Sum(order => order.CountShape(shape));
+        }
+        
+        private static int GetSumOfColors(Color color, IEnumerable<Order> orders)
+        {
+            return orders.Sum(order => order.CountColor(color));
         }
     }
 }

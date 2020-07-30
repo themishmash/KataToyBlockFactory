@@ -1,33 +1,47 @@
 using System;
+using System.Collections.Generic;
 
 namespace KataToyBlockFactory
 {
-    public class PriceCalculator
+    public static class PriceCalculator
     {
-        
-        public int GetCost(Block block)
+        public static int GetShapePrice(Dictionary<Shape, int> shapesCount)
         {
-            var blockPrice = 0;
-            if (block.Color == Color.Red)
+            var totalShapePrice = 0;
+            foreach (var (key, value) in shapesCount)
             {
-                blockPrice += 1;
+                switch (key)
+                {
+                    case Shape.Square:
+                        totalShapePrice += 1 * value;
+                        break;
+                    case Shape.Triangle:
+                        totalShapePrice += 2 * value;
+                        break;
+                    case Shape.Circle:
+                        totalShapePrice += 3 * value;
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException();
+                }
             }
+            return totalShapePrice;
+        }
+        
 
-            switch (block.Shape)
+        public static int GetColorPrice(Dictionary<Color, int> colorsCount)
+        {
+            var totalColorPrice = 0;
+            foreach (var colorCount in colorsCount)
             {
-                case Shape.Square:
-                    blockPrice += 1;
-                    break;
-                case Shape.Triangle:
-                    blockPrice += 2;
-                    break;
-                case Shape.Circle:
-                    blockPrice += 3;
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException();
+                if (colorCount.Key == Color.Red)
+                {
+                    totalColorPrice += 1 * colorCount.Value;
+                }
             }
-            return blockPrice;
+            return totalColorPrice;
         }
     }
+
+   
 }

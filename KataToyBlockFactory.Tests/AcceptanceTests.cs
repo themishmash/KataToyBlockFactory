@@ -12,14 +12,13 @@ namespace KataToyBlockFactory.Tests
         {
             var toyBlockFactory = new ToyBlockFactory();
             var order = toyBlockFactory.CreateOrder("James", "123 Smith Street, Fitzroy");
-            order.DueDate = DateTime.Today;
             order.AddBlock(Shape.Circle, Color.Blue);
             order.AddBlock(Shape.Triangle, Color.Yellow);
             order.AddBlock(Shape.Square, Color.Red);
             
             Assert.Equal("James", order.Name);
             Assert.Equal("123 Smith Street, Fitzroy", order.Address);
-           // Assert.Equal(DateTime.Today, order.DueDate);
+           Assert.Equal(DateTime.Today.AddDays(7), order.DueDate);
             Assert.Equal(1, order.OrderNumber);
             Assert.Equal(1, order.CountShape(Shape.Circle));
             Assert.Equal(1, order.CountColor(Color.Red));
@@ -121,9 +120,9 @@ namespace KataToyBlockFactory.Tests
            order.AddBlock(Shape.Square, Color.Yellow);
            order.AddBlock(Shape.Triangle, Color.Red);
            
-           var invoiceReport = toyBlockFactory.GetInvoiceReport();
+           var invoiceReport = toyBlockFactory.GetInvoiceReport(1);
            
-           Assert.Equal(8, invoiceReport.GetPrice(order));
+           Assert.Equal(8, invoiceReport.GetPrice());
        }
        
     }

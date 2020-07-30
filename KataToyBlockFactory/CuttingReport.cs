@@ -29,6 +29,7 @@ namespace KataToyBlockFactory
         
         public int GetShapeCount(Shape shape)
         {
+            return _shapesCount[shape];
             return _shapesCount.GetValueOrDefault(shape, 0);
         }
 
@@ -36,7 +37,6 @@ namespace KataToyBlockFactory
         {
             return orders.Sum(order => order.CountShape(shape));
         }
-
         
     }
 }
