@@ -4,7 +4,7 @@ namespace KataToyBlockFactory.Tests
 {
     public class PaintingReportTests
     {
-        private ToyBlockFactory _toyBlockFactory;
+        private readonly ToyBlockFactory _toyBlockFactory;
 
         public PaintingReportTests()
         {
@@ -22,17 +22,13 @@ namespace KataToyBlockFactory.Tests
         public void Total_Is_Based_On_Order_Number()
         {
             var paintingReport = _toyBlockFactory.GetPaintingReport(1);
-
             Assert.Equal(1, paintingReport.GetShapeColorCount(Shape.Circle, Color.Blue));
         }
-
-       
 
         [Fact]
         public void Daily_Total()
         {
             var paintingReport = _toyBlockFactory.GetDailyPaintingReport();
-
             Assert.Equal(2, paintingReport.GetShapeColorCount(Shape.Circle, Color.Blue));
         }
 

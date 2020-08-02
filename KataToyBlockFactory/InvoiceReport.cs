@@ -26,6 +26,12 @@ namespace KataToyBlockFactory
         {
             return new InvoiceReport(new List<Order>{order}, shapes, colors );
         }
+        
+        internal static InvoiceReport CreateInvoiceReportTotalOrders(IEnumerable<Order> orders, IEnumerable<Shape> shapes, 
+        IEnumerable<Color> colors)
+        {
+           return new InvoiceReport(orders, shapes, colors);
+        }
 
         public int GetCostTotal()
         {
@@ -42,5 +48,7 @@ namespace KataToyBlockFactory
         {
             return orders.Sum(order => order.CountColor(color));
         }
+
+      
     }
 }

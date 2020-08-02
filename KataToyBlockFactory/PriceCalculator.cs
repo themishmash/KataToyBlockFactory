@@ -19,15 +19,10 @@ namespace KataToyBlockFactory
         public static int GetShapePrice(Dictionary<Shape, int> shapesCount)
         {
             var totalShapePrice = 0;
-            foreach (var (key, value) in shapesCount)
+            foreach (var (key, value) in _shapePrices)
             {
-                foreach (var (shape, price) in _shapePrices)
-                {
-                    if (key == shape)
-                    {
-                        totalShapePrice += value * price;
-                    }
-                }
+                var shapeCount = shapesCount[key];
+                totalShapePrice += shapeCount * value;
             }
             return totalShapePrice;
         }
@@ -35,19 +30,12 @@ namespace KataToyBlockFactory
         public static int GetColorPrice(Dictionary<Color, int> colorsCount)
         {
             var totalColorPrice = 0;
-            foreach (var (key, value) in colorsCount)
+            foreach (var (key, value) in _colorPrices)
             {
-
-                foreach (var (color, price) in _colorPrices)
-                {
-                    if (key == color)
-                    {
-                        totalColorPrice += value * price;
-                    }
-                }
+                var colorCount = colorsCount[key];
+                totalColorPrice += colorCount * value;
             }
             return totalColorPrice;
         }
     }
-    
 }

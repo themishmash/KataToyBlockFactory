@@ -6,7 +6,6 @@ namespace KataToyBlockFactory.Tests
     //These tests are intended a happy path flow through the entire application
     public class AcceptanceTests
     {
-
         [Fact]
         public void Placing_An_Order_Will_Create_New_Order()
         {
@@ -109,7 +108,6 @@ namespace KataToyBlockFactory.Tests
             Assert.Equal(2, paintingReport.GetShapeColorCount(Shape.Triangle, Color.Blue));
         }
         
-       //todo acceptance test for price/invoice stuff
        [Fact]
        public void Create_Invoice_Report_Will_Return_Price_Of_Order()
        {
@@ -123,6 +121,27 @@ namespace KataToyBlockFactory.Tests
            var invoiceReport = toyBlockFactory.GetInvoiceReport(1);
            
            Assert.Equal(8, invoiceReport.GetCostTotal());
+       }
+       
+       [Fact]
+       public void Create_Invoice_Report_Will_Return_Price_For_Daily_Orders()
+       {
+           var toyBlockFactory = new ToyBlockFactory();
+           var order = toyBlockFactory.CreateOrder("James", "123 Smith Street, Fitzroy");
+           order.AddBlock(Shape.Circle, Color.Blue);
+           order.AddBlock(Shape.Square, Color.Blue);
+           order.AddBlock(Shape.Square, Color.Red);
+            
+           var order2 = toyBlockFactory.CreateOrder("James", "123 Smith Street, Fitzroy");
+           order2.AddBlock(Shape.Triangle, Color.Blue);
+           order2.AddBlock(Shape.Triangle, Color.Blue);
+           order2.AddBlock(Shape.Triangle, Color.Yellow);
+           order2.AddBlock(Shape.Square, Color.Yellow);
+           order2.AddBlock(Shape.Square, Color.Red);
+
+           var invoiceReport = toyBlockFactory.GetDailyInvoiceReport();
+            
+           Assert.Equal(15, invoiceReport.GetCostTotal());
        }
        
     }

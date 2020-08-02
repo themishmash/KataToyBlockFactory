@@ -21,10 +21,7 @@ namespace KataToyBlockFactory.Tests
         [Fact]
         public void Total_Number_Of_Shapes_Is_Based_On_Order_Number()
         {
-            //Act
             var cuttingReportForOrder1 = _toyBlockFactory.GetCuttingReport(1);
-            
-            //assert
             Assert.Equal(2, cuttingReportForOrder1.GetShapeCount(Shape.Circle));
         }
 
@@ -39,7 +36,6 @@ namespace KataToyBlockFactory.Tests
         public void No_Shapes_Cut()
         {
             var cuttingReport = _toyBlockFactory.GetCuttingReport(1);
-            
             Assert.Equal(0, cuttingReport.GetShapeCount(Shape.Triangle));
         }
         
@@ -47,8 +43,6 @@ namespace KataToyBlockFactory.Tests
         public void Shapes_Not_Cut_In_Daily_Total()
         {
             var cuttingReport = _toyBlockFactory.GetDailyCuttingReport();
-            
-            //assert
             Assert.Equal(0, cuttingReport.GetShapeCount(Shape.Triangle));
         }
 
