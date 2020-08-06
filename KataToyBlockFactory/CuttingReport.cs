@@ -8,20 +8,20 @@ namespace KataToyBlockFactory
     {
        private readonly Dictionary<Shape, int> _shapesCount = new Dictionary<Shape, int>();
 
-        private CuttingReport(IEnumerable<Order> orders, IEnumerable<Shape> shapes)
+        private CuttingReport(IList<Order> orders, IEnumerable<Shape> shapes)
         {
             foreach (var shape in shapes)
             {
-                _shapesCount.Add(shape, GetSumOfShapes(shape, orders));
+                _shapesCount.Add(shape, orders.Sum(order => order.CountShape(shape)));
             }
         }
 
         internal static CuttingReport CreateCuttingReport(Order order, IEnumerable<Shape> shapes) 
         {
-            return new CuttingReport(new List<Order>{order}, shapes);
+            return CreateCuttingReportTotalOrders(new List<Order>{order}, shapes);
         }
 
-        internal static CuttingReport CreateCuttingReportTotalOrders(IEnumerable<Order> orders, IEnumerable<Shape> 
+        internal static CuttingReport CreateCuttingReportTotalOrders(IList<Order> orders, IEnumerable<Shape> 
         shapes)
         {
             return new CuttingReport(orders, shapes);
@@ -29,14 +29,7 @@ namespace KataToyBlockFactory
         
         public int GetShapeCount(Shape shape)
         {
-            return _shapesCount[shape];
             return _shapesCount.GetValueOrDefault(shape, 0);
         }
-
-        private static int GetSumOfShapes(Shape shape, IEnumerable<Order> orders)
-        {
-            return orders.Sum(order => order.CountShape(shape));
-        }
-        
     }
 }

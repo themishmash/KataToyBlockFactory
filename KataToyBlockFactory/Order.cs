@@ -18,10 +18,7 @@ namespace KataToyBlockFactory
             {
                 if (value < DateTime.Today)
                     throw new ArgumentOutOfRangeException(nameof(DueDate), "Due date must be in future");
-                else
-                {
-                    _dueDate = value;
-                }
+                _dueDate = value;
             }
         }
         
@@ -58,10 +55,6 @@ namespace KataToyBlockFactory
             return _blocks.Count(block => block.Shape == shape && block.Color == color);
         }
 
-        public IEnumerable<Block> GetBlocks()
-        {
-            return _blocks;
-        }
         
     }
 }

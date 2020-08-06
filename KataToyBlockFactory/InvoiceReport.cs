@@ -10,10 +10,7 @@ namespace KataToyBlockFactory
         
         private InvoiceReport(IEnumerable<Order> orders, IEnumerable<Shape> shapes, IEnumerable<Color> colors)
         {
-            foreach (var shape in shapes)
-            {
-               _shapesCount.Add(shape, GetSumOfShapes(shape, orders));
-            }
+            foreach (var shape in shapes) _shapesCount.Add(shape, GetSumOfShapes(shape, orders));
 
             foreach (var color in colors)
             {
@@ -24,7 +21,7 @@ namespace KataToyBlockFactory
         internal static InvoiceReport CreateInvoiceReport(Order order, IEnumerable<Shape> shapes, IEnumerable<Color>
             colors)
         {
-            return new InvoiceReport(new List<Order>{order}, shapes, colors );
+            return CreateInvoiceReportTotalOrders(new List<Order>{order}, shapes, colors );
         }
         
         internal static InvoiceReport CreateInvoiceReportTotalOrders(IEnumerable<Order> orders, IEnumerable<Shape> shapes, 
@@ -37,8 +34,7 @@ namespace KataToyBlockFactory
         {
             return PriceCalculator.GetShapePrice(_shapesCount) + PriceCalculator.GetColorPrice(_colorsCount);
         }
-
-        //todo this one below is repeated from cutting report...
+        
         private static int GetSumOfShapes(Shape shape, IEnumerable<Order> orders)
         {
             return orders.Sum(order => order.CountShape(shape));

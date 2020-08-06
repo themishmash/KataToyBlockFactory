@@ -21,7 +21,7 @@ namespace KataToyBlockFactory
         internal static PaintingReport CreatePaintingReport(Order order, IEnumerable<Shape> shapes, IEnumerable<Color> 
         colors)
         {
-            return new PaintingReport(new List<Order>{order}, shapes, colors);
+            return CreatePaintingReportTotalOrders(new List<Order>{order}, shapes, colors);
         }
         
         internal static PaintingReport CreatePaintingReportTotalOrders(IEnumerable<Order> orders, IEnumerable<Shape> 

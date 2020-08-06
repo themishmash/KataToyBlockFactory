@@ -4,36 +4,38 @@ namespace KataToyBlockFactory
 {
     public static class PriceCalculator
     {
-        private static readonly Dictionary<Shape, int> _shapePrices = new Dictionary<Shape, int>
+        private static readonly Dictionary<Shape, int> ShapePrices = new Dictionary<Shape, int>
         {
             {Shape.Square, 1},
             {Shape.Triangle, 2},
             {Shape.Circle, 3}
         };
         
-        private static readonly Dictionary<Color, int> _colorPrices = new Dictionary<Color, int>()
+        private static readonly Dictionary<Color, int> ColorPrices = new Dictionary<Color, int>()
         {
-            {Color.Red, 1}
+            {Color.Red, 1},
+            {Color.Blue, 0},
+            {Color.Yellow, 0}
         };
 
-        public static int GetShapePrice(Dictionary<Shape, int> shapesCount)
+        public static int GetShapePrice(Dictionary<Shape, int> shapeCounts)
         {
             var totalShapePrice = 0;
-            foreach (var (key, value) in _shapePrices)
+            foreach (var (shape, count) in shapeCounts)
             {
-                var shapeCount = shapesCount[key];
-                totalShapePrice += shapeCount * value;
+                totalShapePrice += count * ShapePrices.GetValueOrDefault(shape, 0);
             }
+            
             return totalShapePrice;
         }
         
         public static int GetColorPrice(Dictionary<Color, int> colorsCount)
         {
             var totalColorPrice = 0;
-            foreach (var (key, value) in _colorPrices)
+            foreach (var (color, count) in colorsCount)
             {
-                var colorCount = colorsCount[key];
-                totalColorPrice += colorCount * value;
+                totalColorPrice += count * ColorPrices.GetValueOrDefault(color, 0);
+
             }
             return totalColorPrice;
         }
