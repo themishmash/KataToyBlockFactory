@@ -29,10 +29,10 @@ namespace KataToyBlockFactory
             return totalShapePrice;
         }
         
-        public static int GetColorPrice(Dictionary<Color, int> colorsCount)
+        public static int GetColorPrice(Dictionary<Color, int> colorCounts)
         {
             var totalColorPrice = 0;
-            foreach (var (color, count) in colorsCount)
+            foreach (var (color, count) in colorCounts)
             {
                 totalColorPrice += count * ColorPrices.GetValueOrDefault(color, 0);
 
