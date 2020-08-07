@@ -4,25 +4,35 @@ using KataToyBlockFactory;
 
 namespace KataToyBlockFactory.Tests
 {
-    public class TestCashier : IInputOutput
+    public class CustomerInput : IInputOutput
     {
-        public string Name { get; }
-        public string Address { get; }
-        public DateTime Date { get; }
+        private string Name { get; }
+        private string Address { get; }
+        private DateTime DueDate { get; }
         public int OrderNumber { get; }
 
         private readonly List<Block> BlockOrder = new List<Block>();
         public readonly string BlueSquare;
         
+        
+        //todo create order like this: with blocks though
+        // public static PlayerSpy CreateBlackJackPlayer()
+        // {
+        //     return new PlayerSpy(new DeckMock(new[]
+        //     {
+        //         new Card(CardFace.Jack, Suit.Hearts),
+        //         new Card(CardFace.Ace, Suit.Hearts),
+        //     }), 0);
+        // }
 
-        public TestCashier(string name, string address, string date, int orderNumber, string blueSquare)
+        public CustomerInput(string name, string address, string dueDate)
         {
             Name = name;
             Address = address;
-            Date = AskDate(date);
-            OrderNumber = orderNumber;
-            BlueSquare = blueSquare;
+            DueDate = AskDate(dueDate);
         }
+        
+        
 
         public List<Block> GetBlueSquareOrder(string blueSquare)
         {

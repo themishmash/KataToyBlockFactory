@@ -6,7 +6,7 @@ namespace KataToyBlockFactory
     class Program
     {
         static void Main(string[] args)
-        {
+        { 
             // var consoleInputOutput = new ConsoleInputOutput();
             // var orderTaker = new OrderTaker(consoleInputOutput);
             // var order = new Order(orderTaker.GetName(), orderTaker.GetAddress(), orderTaker.GetDate(), orderTaker

@@ -18,6 +18,16 @@ namespace KataToyBlockFactory.Tests
         
             Assert.Equal("James", toyBlockFactory.GetOrder(1).Name);
         }
+        
+        [Fact]
+        public void Can_Set_Due_Date()
+        {
+            var toyBlockFactory = new ToyBlockFactory();
+            var order = toyBlockFactory.CreateOrder("James", "123 Smith st");
+            order.DueDate = new DateTime(2020, 10, 10);
+            
+            Assert.Equal(DateTime.Parse("October 10 2020"), order.DueDate);
+        }
 
         [Fact]
         public void Has_Default_Due_Date_One_Week()
@@ -39,5 +49,6 @@ namespace KataToyBlockFactory.Tests
             Assert.Throws<ArgumentOutOfRangeException>(() => order.DueDate = new DateTime(2018, 7, 24));
             
         }
+        
     }
 }
