@@ -8,7 +8,7 @@ namespace KataToyBlockFactory.Tests
 
         public CuttingReportTests ()
         {
-            var toyBlockFactory = new ToyBlockFactory();
+            var toyBlockFactory = new ToyBlockFactory(new NullInputOutput());
             var order = toyBlockFactory.CreateOrder("James", "123 Smith Street, Fitzroy");
             order.AddBlock(Shape.Circle, Color.Blue);
             order.AddBlock(Shape.Circle, Color.Red);

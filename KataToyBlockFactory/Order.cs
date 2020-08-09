@@ -10,7 +10,6 @@ namespace KataToyBlockFactory
         public OrderStatus OrderStatus { get; set; }
         public string Address { get; }
         
-        //todo take logic in the set to put outside. 
         public DateTime DueDate
         {
             get => _dueDate;
@@ -38,6 +37,15 @@ namespace KataToyBlockFactory
         public void AddBlock(Shape shape, Color color)
         {
             _blocks.Add(new Block(shape, color));
+        }
+
+        public void PrintBlocks()
+        {
+            foreach (var block in _blocks)
+            {
+                Console.WriteLine($"{block.Shape} {block.Color}");
+              //  Console.WriteLine(block.Color);
+            }
         }
         
         public int CountShape(Shape shape)

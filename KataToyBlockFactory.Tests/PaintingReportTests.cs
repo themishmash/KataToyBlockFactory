@@ -8,7 +8,7 @@ namespace KataToyBlockFactory.Tests
 
         public PaintingReportTests()
         {
-            var toyBlockFactory = new ToyBlockFactory();
+            var toyBlockFactory = new ToyBlockFactory(new NullInputOutput());
             var order = toyBlockFactory.CreateOrder("", "");
             order.AddBlock(Shape.Circle, Color.Blue);
             order.AddBlock(Shape.Circle, Color.Red);
@@ -35,10 +35,10 @@ namespace KataToyBlockFactory.Tests
         [Fact]
         public void No_Painted_Blocks()
         {
-            var toyBlockFactory = new ToyBlockFactory();
-            toyBlockFactory.CreateOrder("", "");
+         
+            _toyBlockFactory.CreateOrder("", "");
 
-            var paintingReport = toyBlockFactory.GetPaintingReport(1);
+            var paintingReport = _toyBlockFactory.GetPaintingReport(1);
             
             Assert.Equal(0, paintingReport.GetShapeColorCount(Shape.Circle, Color.Blue));
         }
@@ -46,10 +46,9 @@ namespace KataToyBlockFactory.Tests
         [Fact]
         public void No_Painted_Blocks_In_Daily_Total()
         {
-            var toyBlockFactory = new ToyBlockFactory();
-            toyBlockFactory.CreateOrder("", "");
+            _toyBlockFactory.CreateOrder("", "");
 
-            var paintingReport = toyBlockFactory.GetPaintingReport(1);
+            var paintingReport = _toyBlockFactory.GetPaintingReport(1);
             
             Assert.Equal(0, paintingReport.GetShapeColorCount(Shape.Circle, Color.Blue));
         }
