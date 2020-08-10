@@ -7,25 +7,28 @@ namespace KataToyBlockFactory
     {
         private readonly Dictionary<Block, int> _blocksCount = new Dictionary<Block, int>();
 
-        private PaintingReport(IEnumerable<Order> orders, IEnumerable<Shape> shapes, IEnumerable<Color> colors)
+        private PaintingReport(IList<Order> orders, IList<Shape> shapes, IList<Color> colors)
         {
             foreach (var shape in shapes)
-            foreach (var color in colors)
             {
+                foreach (var color in colors)
                 {
-                    _blocksCount.Add(new Block(shape, color), GetSumOfShapeColors(shape, color, orders));
+                    {
+                        _blocksCount.Add(new Block(shape, color), GetSumOfShapeColors(shape, color, orders));
+                    }
                 }
             }
+            
         }
 
-        internal static PaintingReport CreatePaintingReport(Order order, IEnumerable<Shape> shapes, IEnumerable<Color> 
+        internal static PaintingReport CreatePaintingReport(Order order, IList<Shape> shapes, IList<Color> 
         colors)
         {
             return CreatePaintingReportTotalOrders(new List<Order>{order}, shapes, colors);
         }
         
-        internal static PaintingReport CreatePaintingReportTotalOrders(IEnumerable<Order> orders, IEnumerable<Shape> 
-        shapes, IEnumerable<Color> colors)
+        internal static PaintingReport CreatePaintingReportTotalOrders(IList<Order> orders, IList<Shape> 
+        shapes, IList<Color> colors)
         {
             return new PaintingReport(orders, shapes, colors);
         }

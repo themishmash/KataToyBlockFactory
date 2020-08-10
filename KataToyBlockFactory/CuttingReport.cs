@@ -14,6 +14,12 @@ namespace KataToyBlockFactory
                 _shapesCount.Add(shape, orders.Sum(order => order.CountShape(shape)));
             }
         }
+        
+        //this would be the other constructor if not have factory method
+        private CuttingReport(Order order, IEnumerable<Shape> shapes):this(new List<Order>{order},shapes )
+        {
+            
+        }
 
         internal static CuttingReport CreateCuttingReport(Order order, IEnumerable<Shape> shapes) 
         {

@@ -134,12 +134,12 @@ namespace KataToyBlockFactory
             return InvoiceReport.CreateInvoiceReportTotalOrders(_orders, GetAvailableShapes(), GetAvailableColors());
         }
 
-        private static IEnumerable<Shape> GetAvailableShapes()
+        private static IList<Shape> GetAvailableShapes()
         {
             return Enum.GetValues(typeof(Shape)).Cast<Shape>().ToList();
         }
 
-        private static IEnumerable<Color> GetAvailableColors()
+        private static IList<Color> GetAvailableColors()
         {
             return Enum.GetValues(typeof(Color)).Cast<Color>().ToList();
         }

@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace KataToyBlockFactory.Tests
 {
@@ -13,6 +15,7 @@ namespace KataToyBlockFactory.Tests
         private readonly int _quantity7;
         private readonly int _quantity8;
         private readonly int _quantity9;
+        public List<int> _amounts = new List<int>();
         private int _counter;
 
 
@@ -28,6 +31,11 @@ namespace KataToyBlockFactory.Tests
             _quantity7 = quantity7;
             _quantity8 = quantity8;
             _quantity9 = quantity9;
+        }
+
+        public CashierInput(List<int> amounts)
+        {
+            _amounts = amounts;
         }
 
 
@@ -52,6 +60,12 @@ namespace KataToyBlockFactory.Tests
                 9 => _quantity9,
                 _ => 0
             };
+        }
+
+        public int AskBlockQuantity2(string question)
+        {
+            _counter++;
+            return _amounts.FirstOrDefault();
         }
 
         public DateTime AskDate(string question)

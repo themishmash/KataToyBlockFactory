@@ -13,8 +13,8 @@ namespace KataToyBlockFactory
         public int AskBlockQuantity(string question)
         {
             Console.WriteLine(question);
-            var answer = Console.ReadLine();
-            var quantity = int.Parse(answer); 
+            var answer= Console.ReadLine();
+            var quantity = int.Parse(answer!); 
             return quantity;
         }
         
