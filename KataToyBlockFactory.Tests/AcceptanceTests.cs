@@ -6,7 +6,7 @@ namespace KataToyBlockFactory.Tests
     //These tests are intended a happy path flow through the entire application
     public class AcceptanceTests
     {
-        private ToyBlockFactory _toyBlockFactory;
+        private readonly ToyBlockFactory _toyBlockFactory;
         public AcceptanceTests()
         {
             var toyBlockFactory = new ToyBlockFactory(new NullInputOutput());

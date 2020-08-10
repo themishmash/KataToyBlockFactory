@@ -27,5 +27,24 @@ namespace KataToyBlockFactory.Tests
            
             Assert.Equal(0, cuttingReport.GetShapeCount(Shape.Square));
         }
+        
+        [Fact]
+        public void OrderStatusProcessedWhenBlocksAdded()
+        {
+            var cashierInput = new CashierInput(0,0,0,1,1,1,1,1,1);
+            
+            var toyBlockFactory = new ToyBlockFactory(cashierInput);
+            toyBlockFactory.StartOrder();
+            Assert.Equal(OrderStatus.Processed, toyBlockFactory.GetOrderStatus(1));
+        }
+
+        [Fact]
+        public void OrderStatusNoneWhenNoBlocksAdded()
+        {
+            var cashierInput = new CashierInput(0,0,0,0,0,0,0,0,0);
+            var toyBlockFactory = new ToyBlockFactory(cashierInput);
+            toyBlockFactory.StartOrder();
+            Assert.Equal(OrderStatus.None, toyBlockFactory.GetOrderStatus(1));
+        }
     }
 }

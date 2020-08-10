@@ -39,29 +39,19 @@ namespace KataToyBlockFactory.Tests
         public int AskBlockQuantity(string question)
         {
             _counter++;
-            switch (_counter)
+            return _counter switch
             {
-                case 1:
-                    return _quantity;
-                case 2:
-                    return _quantity2;
-                case 3:
-                    return _quantity3;
-                case 4:
-                    return _quantity4;
-                case 5:
-                    return _quantity5;
-                case 6:
-                    return _quantity6;
-                case 7:
-                    return _quantity7;
-                case 8:
-                    return _quantity8;
-                case 9:
-                    return _quantity9;
-                default:
-                    return 0;
-            }
+                1 => _quantity,
+                2 => _quantity2,
+                3 => _quantity3,
+                4 => _quantity4,
+                5 => _quantity5,
+                6 => _quantity6,
+                7 => _quantity7,
+                8 => _quantity8,
+                9 => _quantity9,
+                _ => 0
+            };
         }
 
         public DateTime AskDate(string question)

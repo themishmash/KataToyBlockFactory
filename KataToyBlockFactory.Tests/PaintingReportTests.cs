@@ -35,7 +35,6 @@ namespace KataToyBlockFactory.Tests
         [Fact]
         public void No_Painted_Blocks()
         {
-         
             _toyBlockFactory.CreateOrder("", "");
 
             var paintingReport = _toyBlockFactory.GetPaintingReport(1);

@@ -25,7 +25,6 @@ namespace KataToyBlockFactory
             {
                 totalShapePrice += count * ShapePrices.GetValueOrDefault(shape, 0);
             }
-            
             return totalShapePrice;
         }
         
@@ -35,7 +34,6 @@ namespace KataToyBlockFactory
             foreach (var (color, count) in colorCounts)
             {
                 totalColorPrice += count * ColorPrices.GetValueOrDefault(color, 0);
-
             }
             return totalColorPrice;
         }

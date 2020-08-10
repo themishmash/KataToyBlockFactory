@@ -36,8 +36,10 @@ namespace KataToyBlockFactory
             GetBlockQuantity();
 
             AddBlocksToOrder(order);
+
+            AssignOrderStatus(order);
         }
-        
+
         private void GetBlockQuantity()
         {
             foreach (var (key, value) in _order.ToList())
@@ -56,6 +58,22 @@ namespace KataToyBlockFactory
                     order.AddBlock(key.Shape, key.Color);
                 }
             }
+        }
+        
+        private void AssignOrderStatus(Order order)
+        {
+            var orderStatus = OrderHasBlocks() ? OrderStatus.Processed : OrderStatus.None;
+            order.OrderStatus = orderStatus;
+        }
+        
+        private bool OrderHasBlocks()
+        {
+            var sumOfValue = 0;
+            foreach (var (key, value) in _order)
+            {
+                sumOfValue += value;
+            }
+            return sumOfValue > 0;
         }
 
         public Order CreateOrder(string name, string address)
@@ -78,7 +96,8 @@ namespace KataToyBlockFactory
 
         public OrderStatus GetOrderStatus(int orderNumber)
         {
-            return _orders.Any(order => order.OrderNumber == orderNumber) ? OrderStatus.New : OrderStatus.None;
+            var order = GetOrder(orderNumber);
+            return _orders.Any(order => order.OrderNumber == orderNumber) ? order.OrderStatus : OrderStatus.None;
         }
 
         public CuttingReport GetCuttingReport(int orderNumber)

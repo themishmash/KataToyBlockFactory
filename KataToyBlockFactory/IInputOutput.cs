@@ -9,7 +9,5 @@ namespace KataToyBlockFactory
         int AskBlockQuantity(string question);
 
         DateTime AskDate(string question);
-
-        void output(string message);
     }
 }

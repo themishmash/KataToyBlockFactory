@@ -44,7 +44,5 @@ namespace KataToyBlockFactory
         {
             return orders.Sum(order => order.CountColor(color));
         }
-
-      
     }
 }
