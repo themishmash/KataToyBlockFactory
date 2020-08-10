@@ -42,7 +42,7 @@ namespace KataToyBlockFactory
 
         private void GetBlockQuantity()
         {
-            foreach (var (key, value) in _order.ToList())
+            foreach (var (key, _) in _order.ToList())
             {
                 var orderNumber = _iio.AskBlockQuantity($"Please input the number of {key.Color} {key.Shape}s: ");
                 _order[key] = orderNumber;

@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Xunit;
 
 namespace KataToyBlockFactory.Tests
@@ -7,8 +8,17 @@ namespace KataToyBlockFactory.Tests
         [Fact]
         public void CreateOrderFromInput()
         {
-            var cashierInput = new CashierInput(1,1,1,1,1,1,1,1,1);
-            
+            var cashierInput = new CashierInput( new List<int>(){
+                    1,
+                    1,
+                    1,
+                    1,
+                    1,
+                    1,
+                    1,
+                    1,
+                    1
+                });
            var toyBlockFactory = new ToyBlockFactory(cashierInput);
            toyBlockFactory.StartOrder();
            var cuttingReport = toyBlockFactory.GetCuttingReport(1);
@@ -19,7 +29,18 @@ namespace KataToyBlockFactory.Tests
         [Fact]
         public void CreateOrderFromInputIncludingZeroQuantity()
         {
-            var cashierInput = new CashierInput(0,0,0,1,1,1,1,1,1);
+            var cashierInput = new CashierInput(new List<int>()
+            {
+                0,
+                0,
+                0,
+                1,
+                1,
+                1,
+                1,
+                1,
+                1
+            });
             
             var toyBlockFactory = new ToyBlockFactory(cashierInput);
             toyBlockFactory.StartOrder();
@@ -31,8 +52,18 @@ namespace KataToyBlockFactory.Tests
         [Fact]
         public void OrderStatusProcessedWhenBlocksAdded()
         {
-            var cashierInput = new CashierInput(0,0,0,1,1,1,1,1,1);
-            
+            var cashierInput = new CashierInput(new List<int>()
+           {
+               0,
+               0,
+               0,
+               1,
+               1,
+               1,
+               1,
+               1,
+               1
+           });
             var toyBlockFactory = new ToyBlockFactory(cashierInput);
             toyBlockFactory.StartOrder();
             Assert.Equal(OrderStatus.Processed, toyBlockFactory.GetOrderStatus(1));
@@ -41,7 +72,18 @@ namespace KataToyBlockFactory.Tests
         [Fact]
         public void OrderStatusNoneWhenNoBlocksAdded()
         {
-            var cashierInput = new CashierInput(0,0,0,0,0,0,0,0,0);
+            var cashierInput = new CashierInput(new List<int>()
+            {
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+            });
             var toyBlockFactory = new ToyBlockFactory(cashierInput);
             toyBlockFactory.StartOrder();
             Assert.Equal(OrderStatus.None, toyBlockFactory.GetOrderStatus(1));
