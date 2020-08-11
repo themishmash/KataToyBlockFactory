@@ -8,7 +8,7 @@ namespace KataToyBlockFactory
         private readonly Dictionary<Shape, int> _shapesCount = new Dictionary<Shape, int>();
         private readonly Dictionary<Color, int> _colorsCount = new Dictionary<Color, int>();
         
-        private InvoiceReport(IEnumerable<Order> orders, IEnumerable<Shape> shapes, IEnumerable<Color> colors)
+        private InvoiceReport(IList<Order> orders, IList<Shape> shapes, IList<Color> colors)
         {
             foreach (var shape in shapes) _shapesCount.Add(shape, GetSumOfShapes(shape, orders));
 
@@ -18,14 +18,14 @@ namespace KataToyBlockFactory
             }
         }
 
-        internal static InvoiceReport CreateInvoiceReport(Order order, IEnumerable<Shape> shapes, IEnumerable<Color>
+        internal static InvoiceReport CreateInvoiceReport(Order order, IList<Shape> shapes, IList<Color>
             colors)
         {
             return CreateInvoiceReportTotalOrders(new List<Order>{order}, shapes, colors );
         }
         
-        internal static InvoiceReport CreateInvoiceReportTotalOrders(IEnumerable<Order> orders, IEnumerable<Shape> shapes, 
-        IEnumerable<Color> colors)
+        internal static InvoiceReport CreateInvoiceReportTotalOrders(IList<Order> orders, IList<Shape> shapes, 
+        IList<Color> colors)
         {
            return new InvoiceReport(orders, shapes, colors);
         }

@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Linq;
 
 namespace KataToyBlockFactory
@@ -43,8 +42,8 @@ namespace KataToyBlockFactory
         {
             foreach (var (key, _) in _order.ToList())
             {
-                var orderNumber = _iio.AskBlockQuantity($"Please input the number of {key.Color} {key.Shape}s: ");
-                _order[key] = orderNumber;
+                var blockQuantity = _iio.AskBlockQuantity($"Please input the number of {key.Color} {key.Shape}s: ");
+                _order[key] = blockQuantity;
             }
         }
 
@@ -61,17 +60,12 @@ namespace KataToyBlockFactory
         
         private void AssignOrderStatus(Order order)
         {
-            var orderStatus = OrderHasBlocks() ? OrderStatus.Processed : OrderStatus.None;
-            order.OrderStatus = orderStatus;
+            order.OrderStatus = OrderHasBlocks() ? OrderStatus.Processed : OrderStatus.None;
         }
         
         private bool OrderHasBlocks()
         {
-            var sumOfValue = 0;
-            foreach (var (key, value) in _order)
-            {
-                sumOfValue += value;
-            }
+            var sumOfValue = _order.Cast<int>().Sum();
             return sumOfValue > 0;
         }
 
@@ -96,7 +90,7 @@ namespace KataToyBlockFactory
         public OrderStatus GetOrderStatus(int orderNumber)
         {
             var order = GetOrder(orderNumber);
-            return _orders.Any(order => order.OrderNumber == orderNumber) ? order.OrderStatus : OrderStatus.None;
+            return _orders.Any(x => x.OrderNumber == orderNumber) ? order.OrderStatus : OrderStatus.None;
         }
 
         public CuttingReport GetCuttingReport(int orderNumber)

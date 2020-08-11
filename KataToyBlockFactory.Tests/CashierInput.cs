@@ -25,7 +25,7 @@ namespace ToyBlockFactory.Tests
         public int AskBlockQuantity(string question)
         {
             var amount = 0;
-            for (var i = 1; i <= _amounts.Count; i++)
+            for (var i = 1; i <= _amounts.Count; )
             {
                 amount = _amounts.FirstOrDefault();
                 _amounts.Remove(amount);
@@ -39,7 +39,7 @@ namespace ToyBlockFactory.Tests
            return DateTime.Today.AddDays(7);
         }
 
-        public void output(string message)
+        public void Output(string message)
         {
         }
     }
