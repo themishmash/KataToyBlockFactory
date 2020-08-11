@@ -135,113 +135,15 @@ namespace KataToyBlockFactory
             return InvoiceReport.CreateInvoiceReportTotalOrders(_orders, GetAvailableShapes(), GetAvailableColors());
         }
 
-        private static IList<Shape> GetAvailableShapes()
+        public static IList<Shape> GetAvailableShapes()
         {
             return Enum.GetValues(typeof(Shape)).Cast<Shape>().ToList();
         }
 
-        private static IList<Color> GetAvailableColors()
+        public static IList<Color> GetAvailableColors()
         {
             return Enum.GetValues(typeof(Color)).Cast<Color>().ToList();
         }
-
-
-        public void PrintCuttingReport(int orderNumber)
-        {
-            var order = GetOrder(orderNumber);
-            Console.WriteLine("Your cutting list has been generated:");
-            Console.WriteLine(
-                $"Name: {order.Name} Address: {order.Address} Due Date: {order.DueDate} Order Number: {order.OrderNumber}");
-            Console.WriteLine($"|{"",10}|{" Qty ",4}|");
-            Console.WriteLine($"|{"----------",10}|{"-----",4}|");
-
-            var cuttingReport = GetCuttingReport(orderNumber);
-            foreach (var shape in GetAvailableShapes())
-            {
-                Console.Write($"|{shape,10}|");
-
-                if (cuttingReport.GetShapeCount(shape) > 0)
-                {
-                    Console.Write($"{cuttingReport.GetShapeCount(shape),5}|");
-                }
-                else if (cuttingReport.GetShapeCount(shape) == 0)
-                {
-                    Console.Write($"{"-", 4} |");
-                }
-                
-                Console.WriteLine("");
-            }
-        }
         
-        public void PrintPaintingReport(int orderNumber)
-        {
-            var order = GetOrder(orderNumber);
-            Console.WriteLine("Your painting report has been generated:");
-            Console.WriteLine(
-                $"Name: {order.Name} Address: {order.Address} Due Date: {order.DueDate} Order Number: {order.OrderNumber}");
-        
-            var paintingReport = GetPaintingReport(orderNumber);
-            Console.Write($"|{"          ",10}|");
-            
-            foreach (var color in GetAvailableColors())
-            {
-                Console.Write($"{color,6} |");
-            }
-            
-            Console.WriteLine("");
-            Console.Write($"|{"----------",10}|");
-            foreach (var color in GetAvailableColors())
-            {
-                Console.Write($"{"-----",6} |");
-            }
-        
-            Console.WriteLine("");
-        
-            foreach (var shape in GetAvailableShapes())
-            {
-                Console.Write($"|{shape,10}|");
-                
-                foreach (var color in GetAvailableColors())
-                {
-                    if (paintingReport.GetShapeColorCount(shape, color) > 0)
-                    {
-                        Console.Write($"{paintingReport.GetShapeColorCount(shape, color), 6} |");
-                    }
-                    else if (paintingReport.GetShapeColorCount(shape, color) == 0)
-                    {
-                        Console.Write($"{"-", 6} |");
-                    }
-                }
-                Console.WriteLine("");
-            }
-        }
-        
-        public void PrintInvoiceReport(int orderNumber)
-        {
-            var order = GetOrder(orderNumber);
-            Console.WriteLine("Your invoice report has been generated:");
-            Console.WriteLine(
-                $"Name: {order.Name} Address: {order.Address} Due Date: {order.DueDate} Order Number: {order.OrderNumber}");
-        
-            var invoiceReport = GetInvoiceReport(orderNumber);
-            
-            PrintPaintingReport(orderNumber);
-            
-            Console.WriteLine("");
-            foreach (var shape in GetAvailableShapes())
-            {
-                Console.WriteLine($"{shape, 13}s            {order.CountShape(shape), 3} @${PriceCalculator.ShapePrices[shape], 3} ppi = ${order.CountShape(shape) * PriceCalculator.ShapePrices[shape], 2}");
-            }
-        
-            foreach (var color in GetAvailableColors())
-            {
-                if (PriceCalculator.ColorPrices[color] > 0)
-                {
-                    Console.WriteLine($"{color, 4} color surcharge      {order.CountColor(color), 3} @${PriceCalculator.ColorPrices[color], 3} ppi = ${order.CountColor(color)*PriceCalculator.ColorPrices[color], 2}");
-                }
-            }
-
-            Console.WriteLine($"Total : ${invoiceReport.GetCostTotal(), 3}");
-        }
     }
 }

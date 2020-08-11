@@ -35,19 +35,17 @@ namespace KataToyBlockFactory.Tests
         [Fact]
         public void No_Painted_Blocks()
         {
-            _toyBlockFactory.CreateOrder("", "");
-
-            var paintingReport = _toyBlockFactory.GetPaintingReport(1);
+           var order = _toyBlockFactory.CreateOrder("", "");
+           var paintingReport = _toyBlockFactory.GetPaintingReport(order.OrderNumber);
             
-            Assert.Equal(0, paintingReport.GetShapeColorCount(Shape.Circle, Color.Blue));
+           Assert.Equal(0, paintingReport.GetShapeColorCount(Shape.Circle, Color.Blue));
         }
         
         [Fact]
         public void No_Painted_Blocks_In_Daily_Total()
-        {
-            _toyBlockFactory.CreateOrder("", "");
-
-            var paintingReport = _toyBlockFactory.GetPaintingReport(1);
+        { 
+            var order =_toyBlockFactory.CreateOrder("", "");
+            var paintingReport = _toyBlockFactory.GetPaintingReport(order.OrderNumber);
             
             Assert.Equal(0, paintingReport.GetShapeColorCount(Shape.Circle, Color.Blue));
         }
