@@ -18,7 +18,7 @@ namespace KataToyBlockFactory
            Console.WriteLine("3. Create a daily cutting report.");
            Console.WriteLine("4. Create a painting report.");
            Console.WriteLine("5. Create a daily painting report.");
-           Console.WriteLine("5. Create an invoice.");
+           Console.WriteLine("6. Create an invoice.");
 
            var selection = int.Parse(Console.ReadLine());
            switch (selection)
@@ -30,7 +30,6 @@ namespace KataToyBlockFactory
                {
                    Console.WriteLine("Please input the order number you'd like to see the cutting report for: ");
                    var orderNumber = int.Parse(Console.ReadLine());
-                   toyBlockFactory.GetCuttingReport(orderNumber);
                    toyBlockFactory.PrintCuttingReport(orderNumber);
                    break;
                }
@@ -41,7 +40,6 @@ namespace KataToyBlockFactory
                {
                    Console.WriteLine("Please input the order number you'd like to see the painting report for: ");
                    var orderNumber = int.Parse(Console.ReadLine());
-                   toyBlockFactory.GetPaintingReport(orderNumber);
                    toyBlockFactory.PrintPaintingReport(orderNumber);
                    break;
                }
@@ -54,12 +52,10 @@ namespace KataToyBlockFactory
                {
                    Console.WriteLine("Please input the order number you'd like to see the invoice report for: ");
                    var orderNumber = int.Parse(Console.ReadLine());
-                   toyBlockFactory.GetInvoiceReport(orderNumber);
+                   toyBlockFactory.PrintInvoiceReport(orderNumber);
                    break;
                }
            }
-
-           //Console.WriteLine( toyBlockFactory.GetOrder(1));
 
         }
     }

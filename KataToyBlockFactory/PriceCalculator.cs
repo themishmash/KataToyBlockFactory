@@ -4,14 +4,14 @@ namespace KataToyBlockFactory
 {
     public static class PriceCalculator
     {
-        private static readonly Dictionary<Shape, int> ShapePrices = new Dictionary<Shape, int>
+        public static readonly Dictionary<Shape, int> ShapePrices = new Dictionary<Shape, int>
         {
             {Shape.Square, 1},
             {Shape.Triangle, 2},
             {Shape.Circle, 3}
         };
         
-        private static readonly Dictionary<Color, int> ColorPrices = new Dictionary<Color, int>()
+        public static readonly Dictionary<Color, int> ColorPrices = new Dictionary<Color, int>()
         {
             {Color.Red, 1},
             {Color.Blue, 0},
