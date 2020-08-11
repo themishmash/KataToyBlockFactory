@@ -12,10 +12,17 @@ namespace KataToyBlockFactory
 
         public int AskBlockQuantity(string question)
         {
+            // Console.WriteLine(question);
+            // var answer= Console.ReadLine();
+            // var quantity = int.Parse(answer!); 
+            // return quantity;
+            
             Console.WriteLine(question);
             var answer= Console.ReadLine();
-            var quantity = int.Parse(answer!); 
+            int.TryParse(answer, out var quantity
+            );
             return quantity;
+            //return quantity;
         }
         
         public DateTime AskDate(string question)

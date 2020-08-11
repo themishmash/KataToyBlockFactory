@@ -15,10 +15,8 @@ namespace KataToyBlockFactory
            Console.WriteLine("What would you like to do now?");
            Console.WriteLine("1. Create a new order.");
            Console.WriteLine("2. Create a cutting report.");
-           Console.WriteLine("3. Create a daily cutting report.");
-           Console.WriteLine("4. Create a painting report.");
-           Console.WriteLine("5. Create a daily painting report.");
-           Console.WriteLine("6. Create an invoice.");
+           Console.WriteLine("3. Create a painting report.");
+           Console.WriteLine("4. Create an invoice.");
 
            var selection = int.Parse(Console.ReadLine());
            switch (selection)
@@ -34,21 +32,13 @@ namespace KataToyBlockFactory
                    break;
                }
                case 3:
-                   toyBlockFactory.GetDailyCuttingReport();
-                   break;
-               case 4:
                {
                    Console.WriteLine("Please input the order number you'd like to see the painting report for: ");
                    var orderNumber = int.Parse(Console.ReadLine());
                    toyBlockFactory.PrintPaintingReport(orderNumber);
                    break;
                }
-               case 5:
-               {
-                   toyBlockFactory.GetDailyPaintingReport();
-                   break;
-               }
-               case 6:
+               case 4:
                {
                    Console.WriteLine("Please input the order number you'd like to see the invoice report for: ");
                    var orderNumber = int.Parse(Console.ReadLine());
