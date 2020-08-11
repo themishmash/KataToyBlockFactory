@@ -1,13 +1,14 @@
+using KataToyBlockFactory;
 using Xunit;
 
-namespace KataToyBlockFactory.Tests
+namespace ToyBlockFactory.Tests
 {
     public class ToyBlockFactoryTests
     {
-        private readonly ToyBlockFactory _toyBlockFactory;
+        private readonly KataToyBlockFactory.ToyBlockFactory _toyBlockFactory;
         public ToyBlockFactoryTests()
         {
-            var toyBlockFactory = new ToyBlockFactory(new NullInputOutput());
+            var toyBlockFactory = new KataToyBlockFactory.ToyBlockFactory(new NullInputOutput());
             _toyBlockFactory = toyBlockFactory;
         }
         [Fact]

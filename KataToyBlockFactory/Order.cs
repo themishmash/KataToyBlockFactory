@@ -39,15 +39,6 @@ namespace KataToyBlockFactory
             _blocks.Add(new Block(shape, color));
         }
 
-        public void PrintBlocks()
-        {
-            foreach (var block in _blocks)
-            {
-                Console.WriteLine($"{block.Shape} {block.Color}");
-              //  Console.WriteLine(block.Color);
-            }
-        }
-        
         public int CountShape(Shape shape)
         {
             return _blocks.Count(block => block.Shape == shape);
@@ -63,6 +54,5 @@ namespace KataToyBlockFactory
             return _blocks.Count(block => block.Shape == shape && block.Color == color);
         }
 
-        
     }
 }

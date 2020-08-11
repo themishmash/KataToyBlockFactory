@@ -1,15 +1,16 @@
 using System;
+using KataToyBlockFactory;
 using Xunit;
 
-namespace KataToyBlockFactory.Tests
+namespace ToyBlockFactory.Tests
 {
     //These tests are intended a happy path flow through the entire application
     public class AcceptanceTests
     {
-        private readonly ToyBlockFactory _toyBlockFactory;
+        private readonly KataToyBlockFactory.ToyBlockFactory _toyBlockFactory;
         public AcceptanceTests()
         {
-            var toyBlockFactory = new ToyBlockFactory(new NullInputOutput());
+            var toyBlockFactory = new KataToyBlockFactory.ToyBlockFactory(new NullInputOutput());
             _toyBlockFactory = toyBlockFactory;
         }
         [Fact]
@@ -46,9 +47,9 @@ namespace KataToyBlockFactory.Tests
         
             var cuttingReport = _toyBlockFactory.GetCuttingReport(1); 
             
-            Assert.Equal(2, cuttingReport.GetShapeCount(Shape.Triangle));
-            Assert.Equal(4, cuttingReport.GetShapeCount(Shape.Square));
-            Assert.Equal(1, cuttingReport.GetShapeCount(Shape.Circle));
+            Assert.Equal(2, cuttingReport.GetShapeTotal(Shape.Triangle));
+            Assert.Equal(4, cuttingReport.GetShapeTotal(Shape.Square));
+            Assert.Equal(1, cuttingReport.GetShapeTotal(Shape.Circle));
         }
         
         [Fact]
@@ -67,7 +68,7 @@ namespace KataToyBlockFactory.Tests
             order2.AddBlock(Shape.Square, Color.Red);
         
             var cuttingReport = _toyBlockFactory.GetDailyCuttingReport();
-            Assert.Equal(4, cuttingReport.GetShapeCount(Shape.Square));
+            Assert.Equal(4, cuttingReport.GetShapeTotal(Shape.Square));
         }
         
         [Fact]
@@ -84,8 +85,8 @@ namespace KataToyBlockFactory.Tests
             
             var paintingReport = _toyBlockFactory.GetPaintingReport(1);
             
-            Assert.Equal(1, paintingReport.GetShapeColorCount(Shape.Triangle, Color.Yellow));
-            Assert.Equal(2, paintingReport.GetShapeColorCount(Shape.Square, Color.Red));
+            Assert.Equal(1, paintingReport.GetShapeColorTotal(Shape.Triangle, Color.Yellow));
+            Assert.Equal(2, paintingReport.GetShapeColorTotal(Shape.Square, Color.Red));
         }
         
         [Fact]
@@ -105,8 +106,8 @@ namespace KataToyBlockFactory.Tests
 
             var paintingReport = _toyBlockFactory.GetDailyPaintingReport();
             
-            Assert.Equal(2, paintingReport.GetShapeColorCount(Shape.Square, Color.Red));
-            Assert.Equal(2, paintingReport.GetShapeColorCount(Shape.Triangle, Color.Blue));
+            Assert.Equal(2, paintingReport.GetShapeColorTotal(Shape.Square, Color.Red));
+            Assert.Equal(2, paintingReport.GetShapeColorTotal(Shape.Triangle, Color.Blue));
         }
         
        [Fact]

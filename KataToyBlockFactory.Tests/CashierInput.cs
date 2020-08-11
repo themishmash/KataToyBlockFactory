@@ -1,14 +1,13 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using KataToyBlockFactory;
 
-namespace KataToyBlockFactory.Tests
+namespace ToyBlockFactory.Tests
 {
     public class CashierInput : IInputOutput
     {
-      
         private readonly List<int> _amounts = new List<int>();
-        
 
         public CashierInput(IEnumerable<int> amounts)
         {

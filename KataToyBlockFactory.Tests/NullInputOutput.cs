@@ -1,6 +1,7 @@
 using System;
+using KataToyBlockFactory;
 
-namespace KataToyBlockFactory.Tests
+namespace ToyBlockFactory.Tests
 {
     public class NullInputOutput : IInputOutput
     {

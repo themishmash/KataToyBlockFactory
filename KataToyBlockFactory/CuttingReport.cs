@@ -26,7 +26,7 @@ namespace KataToyBlockFactory
             return new CuttingReport(orders, shapes);
         }
         
-        public int GetShapeCount(Shape shape)
+        public int GetShapeTotal(Shape shape)
         {
             return _shapesCount.GetValueOrDefault(shape, 0);
         }

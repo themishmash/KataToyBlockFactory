@@ -1,7 +1,8 @@
 using System.Collections.Generic;
+using KataToyBlockFactory;
 using Xunit;
 
-namespace KataToyBlockFactory.Tests
+namespace ToyBlockFactory.Tests
 {
     public class PriceCalculatorTests
     {

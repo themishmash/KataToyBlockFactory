@@ -7,7 +7,6 @@ namespace KataToyBlockFactory
 {
     public class ToyBlockFactory
     {
-
         private readonly List<Order> _orders = new List<Order>();
         private int _count;
         private readonly IInputOutput _iio;
@@ -16,7 +15,6 @@ namespace KataToyBlockFactory
         public ToyBlockFactory(IInputOutput iio)
         {
             _iio = iio;
-
             foreach (var shape in GetAvailableShapes())
             {
                 foreach (var color in GetAvailableColors())

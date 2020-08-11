@@ -18,7 +18,6 @@ namespace KataToyBlockFactory
                     }
                 }
             }
-            
         }
 
         internal static PaintingReport CreatePaintingReport(Order order, IList<Shape> shapes, IList<Color> 
@@ -33,7 +32,7 @@ namespace KataToyBlockFactory
             return new PaintingReport(orders, shapes, colors);
         }
         
-        public int GetShapeColorCount(Shape shape, Color color)
+        public int GetShapeColorTotal(Shape shape, Color color)
         {
             var foundKey = _blocksCount.Keys.FirstOrDefault(x => x.Shape == shape && x.Color == color);
             return _blocksCount.GetValueOrDefault(foundKey, 0);
@@ -43,8 +42,5 @@ namespace KataToyBlockFactory
         {
             return orders.Sum(order => order.CountShapeAndColor(shape, color));
         }
-
-        
     }
-    
 }

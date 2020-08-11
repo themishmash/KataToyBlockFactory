@@ -5,8 +5,7 @@ namespace KataToyBlockFactory
     class Program
     {
         static void Main(string[] args)
-        {
-            
+        { 
             Console.WriteLine("Welcome to the Toy Block Factory.");
             var consoleInputOutput = new ConsoleInputOutput();
            var toyBlockFactory = new ToyBlockFactory(consoleInputOutput);
@@ -62,11 +61,11 @@ namespace KataToyBlockFactory
             {
                 Console.Write($"|{shape,10}|");
 
-                if (cuttingReport.GetShapeCount(shape) > 0)
+                if (cuttingReport.GetShapeTotal(shape) > 0)
                 {
-                    Console.Write($"{cuttingReport.GetShapeCount(shape),5}|");
+                    Console.Write($"{cuttingReport.GetShapeTotal(shape),5}|");
                 }
-                else if (cuttingReport.GetShapeCount(shape) == 0)
+                else if (cuttingReport.GetShapeTotal(shape) == 0)
                 {
                     Console.Write($"{"-", 4} |");
                 }
@@ -90,6 +89,7 @@ namespace KataToyBlockFactory
             }
             
             Console.WriteLine("");
+            
             Console.Write($"|{"----------",10}|");
             foreach (var color in ToyBlockFactory.GetAvailableColors())
             {
@@ -104,11 +104,11 @@ namespace KataToyBlockFactory
                 
                 foreach (var color in ToyBlockFactory.GetAvailableColors())
                 {
-                    if (paintingReport.GetShapeColorCount(shape, color) > 0)
+                    if (paintingReport.GetShapeColorTotal(shape, color) > 0)
                     {
-                        Console.Write($"{paintingReport.GetShapeColorCount(shape, color), 6} |");
+                        Console.Write($"{paintingReport.GetShapeColorTotal(shape, color), 6} |");
                     }
-                    else if (paintingReport.GetShapeColorCount(shape, color) == 0)
+                    else if (paintingReport.GetShapeColorTotal(shape, color) == 0)
                     {
                         Console.Write($"{"-", 6} |");
                     }
@@ -144,6 +144,5 @@ namespace KataToyBlockFactory
             }
             Console.WriteLine($"Total : ${invoiceReport.GetCostTotal(), 3}");
         }
-        
     }
 }
